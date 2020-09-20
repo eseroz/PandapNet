@@ -1,0 +1,24 @@
+<p>Kestirici form tanımları</p>
+
+<section class="card">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>FormAd</th>
+        <th>Periyod</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let form of FormTanims">
+        <td>{{form.Id}}</td>
+        <td>{{form.FormAd}}</td>
+        <td>{{form.Periyod}}</td>
+        <td><button class="btn btn-primary" (click)="edit(form)">Sorular</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+</section>
+

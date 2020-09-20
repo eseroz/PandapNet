@@ -1,0 +1,51 @@
+
+<nav class="alert alert-primary" style="">
+  <h5>Bugün doldurulacak formlar</h5>
+  
+  <div class="progress" style="width: 100%;height: 15px;">
+    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"
+    >85%</div>
+  </div>
+  
+</nav>
+
+
+<section class="card">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>FormAd</th>
+        <th>Form Tarihi</th>
+
+        <th>Yetkili Roller</th>
+        <th>Doldurma %</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let form of FormGunluks">
+        <td>{{ form.Id }}</td>
+        <td>{{ form.FormAd }}</td>
+        <td>{{ form.FormOlusturmaTarihi | date: "dd/MM/yyyy" }}</td>
+
+        <td>{{ form.YetkiliRoller }}</td>
+        <td>
+          <div class="progress" style="width: 100px;height: 30px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 65%"
+            >
+              65%
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <button class="btn btn-primary" (click)="edit(form)">Başla</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

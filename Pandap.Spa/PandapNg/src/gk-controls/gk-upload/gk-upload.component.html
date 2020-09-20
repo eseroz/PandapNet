@@ -1,0 +1,4 @@
+<input accept="audio/*,video/*,image/*" #fileInput style="display: none;" type="file" (change)="onFileSelected($event)" />
+<button (click)="fileInput.click()">Resim Ekle</button>
+
+<div [innerHTML]="ProgressMessage"></div>
