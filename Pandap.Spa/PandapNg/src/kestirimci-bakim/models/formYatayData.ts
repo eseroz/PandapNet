@@ -5,6 +5,7 @@ FormAdi:string
 MakinaKod:string
 IslemTarih:Date
 KullaniciId:String
+CevapJson:string
 S01:string
 S02:string
 S03:string

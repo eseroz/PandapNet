@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormYatayData } from '../models/formYatayData';
-import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpEventType,
+  HttpHeaders,
+  HttpResponse,
+} from '@angular/common/http';
 import { FormTanim } from '../models/formTanim';
 import { environment } from '../../environments/environment';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +16,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { FormSoru } from '../models/formSoru';
 import { ActivatedRoute, Router } from '@angular/router';
+import FormSoruCevapJson from '../models/formCevapJson';
 
 @Component({
   selector: 'app-form-yatay-data-edit',
@@ -19,11 +26,11 @@ export class FormYatayDataEditComponent implements OnInit {
   public FormYatayData: FormYatayData;
   public FormTanim: FormTanim;
   public FormSorular: FormSoru[];
+  public CevapJObjectListe: Array<FormSoruCevapJson>;
 
   public baseUrl: string = environment.baseUrl;
   FormAd: string;
   FormGunlukId: string;
-  
 
   constructor(
     private http: HttpClient,
@@ -49,11 +56,19 @@ export class FormYatayDataEditComponent implements OnInit {
           `FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
       )
       .toPromise();
+
+    this.CevapJObjectListe = JSON.parse(this.FormYatayData.CevapJson);
+  }
+  soruEkDosyaListeGetir(soruKod: string) {
+    var soruCevap = this.CevapJObjectListe.find((x) => x.SoruKod === soruKod);
+
+    let liste = soruCevap.Dosyalar.map((c) => c.DosyaAd);
+    console.log(liste);
+
+    return liste;
   }
 
   kaydet() {
     console.log(this.FormYatayData);
   }
-
- 
 }

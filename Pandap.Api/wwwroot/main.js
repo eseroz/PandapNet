@@ -283,6 +283,96 @@ FormSorularComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdef
 
 /***/ }),
 
+/***/ "5JKa":
+/*!**********************************************************!*\
+  !*** ./src/gk-controls/gk-upload/gk-upload.component.ts ***!
+  \**********************************************************/
+/*! exports provided: GkUploadComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GkUploadComponent", function() { return GkUploadComponent; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ "AytR");
+
+
+
+
+
+class GkUploadComponent {
+    constructor(http) {
+        this.http = http;
+        this.baseUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl;
+    }
+    ngOnInit() { }
+    onFileSelected(event) {
+        var selectedFile = event.target.files[0];
+        // if(!selectedFile.type.includes("image"))
+        // {
+        //   alert("Sadece resim dosyası yükleyebilirsiniz");
+        //   return;
+        // }
+        // if(selectedFile.size>20000000)
+        // {
+        //   alert("Dosya çok büyük");
+        //   return;
+        // }
+        var url = this.baseUrl + 'UploadFile/yukle';
+        const fd = new FormData();
+        fd.append(selectedFile.name, selectedFile);
+        this.http
+            .post(url, fd, {
+            reportProgress: true,
+            observe: 'events',
+        })
+            .subscribe((event) => {
+            var result = this.getEventMessage(event, selectedFile);
+            this.ProgressMessage = result;
+        });
+    }
+    getEventMessage(event, file) {
+        switch (event.type) {
+            case _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpEventType"].Sent:
+                return `Dosya yükleniyor "${file.name}" / ${file.size}.`;
+            case _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpEventType"].UploadProgress:
+                const percentDone = Math.round(100 * event.loaded / event.total);
+                return ` ${file.name} .....yükleniyor ${percentDone}% `;
+            case _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpEventType"].Response:
+                {
+                    return event.body.toString();
+                }
+        }
+    }
+}
+GkUploadComponent.ɵfac = function GkUploadComponent_Factory(t) { return new (t || GkUploadComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"])); };
+GkUploadComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: GkUploadComponent, selectors: [["gk-upload"]], decls: 5, vars: 1, consts: [["accept", "audio/*,video/*,image/*", "type", "file", 2, "display", "none", 3, "change"], ["fileInput", ""], [1, "btn", "btn-secondary", "btn-sm", "mt-1", 3, "click"], [3, "innerHTML"]], template: function GkUploadComponent_Template(rf, ctx) { if (rf & 1) {
+        const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "input", 0, 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function GkUploadComponent_Template_input_change_0_listener($event) { return ctx.onFileSelected($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function GkUploadComponent_Template_button_click_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](1); return _r0.click(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Resim / Video / Ses Ekle");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](4, "div", 3);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("innerHTML", ctx.ProgressMessage, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeHtml"]);
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvZ2stY29udHJvbHMvZ2stdXBsb2FkL2drLXVwbG9hZC5jb21wb25lbnQuY3NzIn0= */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](GkUploadComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+        args: [{
+                selector: 'gk-upload',
+                templateUrl: './gk-upload.component.html',
+                styleUrls: ['./gk-upload.component.css'],
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "9pox":
 /*!*********************************************************!*\
   !*** ./src/kestirimci-bakim/kestirimci-bakim.module.ts ***!
@@ -301,6 +391,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_yatay_data_edit_form_yatay_data_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form-yatay-data-edit/form-yatay-data-edit.component */ "Avgw");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _form_sorular_form_sorular_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./form-sorular/form-sorular.component */ "46bl");
+/* harmony import */ var src_gk_controls_gk_controls_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/gk-controls/gk-controls.module */ "vjP1");
+
 
 
 
@@ -316,11 +408,13 @@ KestirimciBakimModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵde
 KestirimciBakimModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({ factory: function KestirimciBakimModule_Factory(t) { return new (t || KestirimciBakimModule)(); }, imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+            src_gk_controls_gk_controls_module__WEBPACK_IMPORTED_MODULE_8__["GkControlsModule"]
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](KestirimciBakimModule, { declarations: [_form_liste_form_liste_component__WEBPACK_IMPORTED_MODULE_0__["FormListeComponent"], _formgunluk_formgunluk_component__WEBPACK_IMPORTED_MODULE_4__["FormgunlukComponent"], _form_yatay_data_edit_form_yatay_data_edit_component__WEBPACK_IMPORTED_MODULE_5__["FormYatayDataEditComponent"], _form_sorular_form_sorular_component__WEBPACK_IMPORTED_MODULE_7__["FormSorularComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
-        _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]], exports: [_form_liste_form_liste_component__WEBPACK_IMPORTED_MODULE_0__["FormListeComponent"],
+        _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+        src_gk_controls_gk_controls_module__WEBPACK_IMPORTED_MODULE_8__["GkControlsModule"]], exports: [_form_liste_form_liste_component__WEBPACK_IMPORTED_MODULE_0__["FormListeComponent"],
         _formgunluk_formgunluk_component__WEBPACK_IMPORTED_MODULE_4__["FormgunlukComponent"],
         _form_yatay_data_edit_form_yatay_data_edit_component__WEBPACK_IMPORTED_MODULE_5__["FormYatayDataEditComponent"],
         _form_sorular_form_sorular_component__WEBPACK_IMPORTED_MODULE_7__["FormSorularComponent"]] }); })();
@@ -331,7 +425,8 @@ KestirimciBakimModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵde
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                     _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+                    src_gk_controls_gk_controls_module__WEBPACK_IMPORTED_MODULE_8__["GkControlsModule"]
                 ],
                 exports: [
                     _form_liste_form_liste_component__WEBPACK_IMPORTED_MODULE_0__["FormListeComponent"],
@@ -405,7 +500,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _gk_controls_gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../gk-controls/gk-upload/gk-upload.component */ "5JKa");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+
 
 
 
@@ -488,12 +585,13 @@ function FormYatayDataEditComponent_div_7_ng_template_3_Template(rf, ctx) { if (
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, FormYatayDataEditComponent_div_7_ng_template_3_ng_template_4_Template, 1, 1, "ng-template", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, FormYatayDataEditComponent_div_7_ng_template_3_ng_template_5_Template, 1, 1, "ng-template", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](6, FormYatayDataEditComponent_div_7_ng_template_3_ng_template_6_Template, 2, 2, "ng-template", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](7, "gk-upload");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const formSoru_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"]("", formSoru_r1.SoruKod, " - ", formSoru_r1.Soru, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"](" ", formSoru_r1.SoruKod, " - ", formSoru_r1.Soru, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", formSoru_r1.HtmlKontrolTip == "text");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
@@ -505,7 +603,7 @@ function FormYatayDataEditComponent_div_7_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, FormYatayDataEditComponent_div_7_ng_template_1_Template, 3, 1, "ng-template", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, FormYatayDataEditComponent_div_7_ng_template_2_Template, 3, 1, "ng-template", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, FormYatayDataEditComponent_div_7_ng_template_3_Template, 7, 5, "ng-template", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, FormYatayDataEditComponent_div_7_ng_template_3_Template, 8, 5, "ng-template", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const formSoru_r1 = ctx.$implicit;
@@ -566,7 +664,7 @@ FormYatayDataEditComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["�
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.FormSorular);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ɵangular_packages_forms_forms_x"]], encapsulation: 2 });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _gk_controls_gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_6__["GkUploadComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ɵangular_packages_forms_forms_x"]], encapsulation: 2 });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](FormYatayDataEditComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
         args: [{
@@ -590,8 +688,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: false,
-    baseUrl1: 'http://localhost:63075/api/',
-    baseUrl: 'http://www.pandap.net/api/',
+    baseUrl: 'http://localhost:63075/api/',
 };
 
 
@@ -812,7 +909,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
                 declarations: [
                     _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                     _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_7__["NavMenuComponent"],
-                    _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
+                    _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"]
                 ],
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1022,6 +1119,46 @@ AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
         args: [{
                 imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
                 exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
+            }]
+    }], null, null); })();
+
+
+/***/ }),
+
+/***/ "vjP1":
+/*!***********************************************!*\
+  !*** ./src/gk-controls/gk-controls.module.ts ***!
+  \***********************************************/
+/*! exports provided: GkControlsModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GkControlsModule", function() { return GkControlsModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gk-upload/gk-upload.component */ "5JKa");
+
+
+
+
+class GkControlsModule {
+}
+GkControlsModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: GkControlsModule });
+GkControlsModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function GkControlsModule_Factory(t) { return new (t || GkControlsModule)(); }, imports: [[
+            _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
+        ]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](GkControlsModule, { declarations: [_gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_2__["GkUploadComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]], exports: [_gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_2__["GkUploadComponent"]] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](GkControlsModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+        args: [{
+                declarations: [_gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_2__["GkUploadComponent"]],
+                imports: [
+                    _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
+                ],
+                exports: [
+                    _gk_upload_gk_upload_component__WEBPACK_IMPORTED_MODULE_2__["GkUploadComponent"]
+                ]
             }]
     }], null, null); })();
 

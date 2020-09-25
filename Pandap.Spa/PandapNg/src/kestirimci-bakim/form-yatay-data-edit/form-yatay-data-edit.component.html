@@ -1,46 +1,53 @@
-
-
 <main class="col-md-8" style="margin: auto">
-  <div style="
+  <div
+    style="
       display: flex;
       align-items: center;
       margin-bottom: 10px;
       padding: 15px;
       background: darkblue;
       color: white;
-    ">
+    "
+  >
     <h3>KESTİRİCİ BAKIM KONTROL FORMU</h3>
   </div>
 
-  <div style="
+  <div
+    style="
       margin-bottom: 10px;
       display: flex;
       justify-content: flex-end;
       background: white;
-    ">
-    <button style="margin: 5px; width: 100px"
-            class="btn btn-primary"
-            (click)="kaydet()">
+    "
+  >
+    <button
+      style="margin: 5px; width: 100px"
+      class="btn btn-primary"
+      (click)="kaydet()"
+    >
       Kaydet
     </button>
   </div>
 
   <div *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section-main'">
-      <article style="
+      <article
+        style="
           padding: 15px;
           background-color: blueviolet;
           display: flex;
           align-items: center;
           color: white;
           margin-bottom: -15px;
-        ">
+        "
+      >
         <div>{{ formSoru.Soru }}</div>
       </article>
     </ng-template>
 
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section'">
-      <article style="
+      <article
+        style="
           padding: 10px;
           margin-left: 50px;
 
@@ -49,15 +56,18 @@
           align-items: center;
           color: white;
           margin-bottom: -10px;
-        ">
+        "
+      >
         <div>{{ formSoru.Soru }}</div>
       </article>
     </ng-template>
 
-    <ng-template [ngIf]="
+    <ng-template
+      [ngIf]="
         formSoru.HtmlKontrolTip != 'section' &&
         formSoru.HtmlKontrolTip != 'section-main'
-      ">
+      "
+    >
       <article class="card" style="margin: auto">
         <div class="card-body">
           <h6 class="card-title">
@@ -65,45 +75,55 @@
           </h6>
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'text'">
-            <input type="text"
-                   class="form-control"
-                   [(ngModel)]="FormYatayData[formSoru.SoruKod]" />
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            />
           </ng-template>
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'date'">
-            <input type="date"
-                   class="form-control"
-                   [(ngModel)]="FormYatayData[formSoru.SoruKod]" />
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            />
           </ng-template>
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'select'">
-            <select type="text"
-                    class="form-control"
-                    [(ngModel)]="FormYatayData[formSoru.SoruKod]">
-              <option *ngFor="let deger of formSoru.Secenekler.split(';')"
-                      [value]="deger">
+            <select
+              type="text"
+              class="form-control"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            >
+              <option
+                *ngFor="let deger of formSoru.Secenekler.split(';')"
+                [value]="deger"
+              >
                 {{ deger }}
               </option>
             </select>
           </ng-template>
 
           <gk-upload></gk-upload>
-
-      
         </div>
       </article>
     </ng-template>
   </div>
 
-  <div style="
+  <div
+    style="
       margin-bottom: 10px;
       display: flex;
       justify-content: flex-end;
       background: white;
-    ">
-    <button style="margin: 5px; width: 100px"
-            class="btn btn-primary"
-            (click)="kaydet()">
+    "
+  >
+    <button
+      style="margin: 5px; width: 100px"
+      class="btn btn-primary"
+      (click)="kaydet()"
+    >
       Kaydet
     </button>
   </div>

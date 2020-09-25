@@ -19,6 +19,9 @@ namespace Pandap.Api.DataModels
         public string MakinaKod { get; set; }
         public DateTime IslemTarih { get; set; }
         public string KullaniciId { get; set; }
+
+        public string CevapJson { get; set; }
+
         public string S01 { get; set; }
         public string S02 { get; set; }
         public string S03 { get; set; }

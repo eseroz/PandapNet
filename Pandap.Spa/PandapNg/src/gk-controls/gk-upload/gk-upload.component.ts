@@ -1,5 +1,5 @@
 import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -11,6 +11,7 @@ export class GkUploadComponent implements OnInit {
   
   public baseUrl: string = environment.baseUrl;
   ProgressMessage:string;
+  @Input() dosyalar: string;
   
   constructor( private http: HttpClient,) {}
 
