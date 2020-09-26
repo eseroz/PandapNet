@@ -50,6 +50,8 @@ export class FormYatayDataEditComponent implements OnInit {
       )
       .toPromise();
 
+     
+
     this.FormYatayData = await this.http
       .get<FormYatayData>(
         this.baseUrl +
@@ -60,12 +62,17 @@ export class FormYatayDataEditComponent implements OnInit {
     this.CevapJObjectListe = JSON.parse(this.FormYatayData.CevapJson);
   }
   soruEkDosyaListeGetir(soruKod: string) {
-    var soruCevap = this.CevapJObjectListe.find((x) => x.SoruKod === soruKod);
+    console.log(soruKod);
 
-    let liste = soruCevap.Dosyalar.map((c) => c.DosyaAd);
-    console.log(liste);
+    // if (this.CevapJObjectListe === null) {
+    //   return [];
+    // }
 
-    return liste;
+    // var soruCevap = this.CevapJObjectListe.find((x) => x.SoruKod === soruKod);
+    // let liste = soruCevap.Dosyalar.map((c) => c.DosyaAd);
+    // console.log(liste);
+
+    // return liste;
   }
 
   kaydet() {

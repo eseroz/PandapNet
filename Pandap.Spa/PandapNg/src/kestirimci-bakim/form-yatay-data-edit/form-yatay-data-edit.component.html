@@ -62,6 +62,12 @@
       </article>
     </ng-template>
 
+ 
+      <gk-upload
+        [dosyalar]="soruEkDosyaListeGetir(formSoru.FormAdi)"
+      ></gk-upload>
+ 
+
     <ng-template
       [ngIf]="
         formSoru.HtmlKontrolTip != 'section' &&
@@ -104,8 +110,6 @@
               </option>
             </select>
           </ng-template>
-
-          <gk-upload></gk-upload>
         </div>
       </article>
     </ng-template>
