@@ -60,25 +60,21 @@ export class FormYatayDataEditComponent implements OnInit {
       )
       .toPromise();
   }
-  kaydet() {
-    let json = `{"Id":1,"FormGunlukId":1,"FormAdi":"SH-Gunluk"}`;
+  async kaydet() {
 
-    let obj=JSON.parse(json);
+    this.FormYatayData.CevapJson=JSON.stringify(this.FormYatayData.CevapEktraObj);
 
-    let options = {
-      headers: {
+    console.log(this.FormYatayData);
+
+    let options = { headers: {
         'Content-Type': 'application/json',
-      },
-    
+      }
     };
 
     let yol = this.baseUrl + `FormYatayData/Kaydet`;
 
-    this.http.post<FormYatayData>(yol, obj, options).subscribe(
-      (result) => {
-        console.log(result);
-      },
-      (error) => console.error(error)
-    );
+    let sonuc=await this.http.post(yol, this.FormYatayData, { ...options, responseType: 'text' }).toPromise();
+
+    console.log(sonuc);
   }
 }

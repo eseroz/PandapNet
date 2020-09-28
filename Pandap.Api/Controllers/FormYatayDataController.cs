@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pandap.Api.DataModels;
 
 namespace Pandap.Api.Controllers
@@ -47,9 +48,15 @@ namespace Pandap.Api.Controllers
 
      
         [HttpPost]
-       public IActionResult Kaydet(FormYatayData model)
+       public string Kaydet(FormYatayData model)
         {
-            return Ok("aaa");
+
+            dc.YatayDatas.Update(model);
+
+
+            dc.SaveChanges();
+
+            return "başarılı";
           
         }
 
