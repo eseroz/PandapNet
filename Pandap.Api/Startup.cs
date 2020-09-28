@@ -32,7 +32,10 @@ namespace Pandap.Api
                 options.AddPolicy("MyAllowOrigin", builder =>
                 {
                     builder
-                    .AllowAnyOrigin();
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                  
                   
                 });
             });

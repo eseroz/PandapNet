@@ -26,7 +26,6 @@ export class FormYatayDataEditComponent implements OnInit {
   public FormYatayData: FormYatayData;
   public FormTanim: FormTanim;
   public FormSorular: FormSoru[];
- 
 
   public baseUrl: string = environment.baseUrl;
   FormAd: string;
@@ -44,8 +43,6 @@ export class FormYatayDataEditComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
- 
-
     this.FormYatayData = await this.http
       .get<FormYatayData>(
         this.baseUrl +
@@ -58,25 +55,30 @@ export class FormYatayDataEditComponent implements OnInit {
     console.log(this.FormYatayData);
 
     this.FormSorular = await this.http
-    .get<FormSoru[]>(
-      this.baseUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
-    )
-    .toPromise();
-    
+      .get<FormSoru[]>(
+        this.baseUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
+      )
+      .toPromise();
   }
-   kaydet() {
+  kaydet() {
+    let json = `{"Id":1,"FormGunlukId":1,"FormAdi":"SH-Gunluk"}`;
 
-    let json=`{"Id":1,"FormGunlukId":1,"FormAdi":"SH-Gunluk"}`;
+    let obj=JSON.parse(json);
 
-    let myheaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    let options = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    
+    };
 
-    let yol=this.baseUrl + `FormYatayData/Kaydet`;
+    let yol = this.baseUrl + `FormYatayData/Kaydet`;
 
-    this.http.post<any>(yol,json,{headers: myheaders}).subscribe(result => {
-     console.log("bitti");
-  }, error => console.error(error));
-
+    this.http.post<FormYatayData>(yol, obj, options).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (error) => console.error(error)
+    );
   }
 }

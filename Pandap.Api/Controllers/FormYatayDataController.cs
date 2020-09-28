@@ -47,9 +47,9 @@ namespace Pandap.Api.Controllers
 
      
         [HttpPost]
-       public string Kaydet(FormYatayData model)
+       public IActionResult Kaydet(FormYatayData model)
         {
-            return "aaa";
+            return Ok("aaa");
           
         }
 
