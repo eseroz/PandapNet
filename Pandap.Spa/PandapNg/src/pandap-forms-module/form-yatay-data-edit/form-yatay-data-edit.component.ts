@@ -64,7 +64,19 @@ export class FormYatayDataEditComponent implements OnInit {
     .toPromise();
     
   }
-  kaydet() {
-    console.log(this.FormYatayData);
+   kaydet() {
+
+    let json=`{"Id":1,"FormGunlukId":1,"FormAdi":"SH-Gunluk"}`;
+
+    let myheaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let yol=this.baseUrl + `FormYatayData/Kaydet`;
+
+    this.http.post<any>(yol,json,{headers: myheaders}).subscribe(result => {
+     console.log("bitti");
+  }, error => console.error(error));
+
   }
 }

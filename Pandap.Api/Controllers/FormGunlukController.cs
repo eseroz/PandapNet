@@ -11,8 +11,7 @@ namespace Pandap.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [EnableCors("AllowOrigin")]
-
+    
     public class FormGunlukController : ControllerBase
     {
         PandapDbContext dc;

@@ -17,7 +17,6 @@ namespace Pandap.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [EnableCors("AllowOrigin")]
     public class UploadFileController:ControllerBase
     {
         [RequestFormLimits(MultipartBodyLengthLimit = 2097152000)]

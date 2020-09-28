@@ -27,9 +27,14 @@ namespace Pandap.Api
       
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(c =>
+            services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                options.AddPolicy("MyAllowOrigin", builder =>
+                {
+                    builder
+                    .AllowAnyOrigin();
+                  
+                });
             });
 
      
@@ -68,13 +73,12 @@ namespace Pandap.Api
 
             app.UseDefaultFiles();
 
-             app.UseStaticFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("MyAllowOrigin");
 
-         
 
             app.UseAuthorization();
 

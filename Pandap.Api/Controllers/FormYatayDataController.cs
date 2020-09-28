@@ -11,7 +11,6 @@ namespace Pandap.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [EnableCors("AllowOrigin")]
     public class FormYatayDataController : ControllerBase
     {
 
@@ -44,6 +43,14 @@ namespace Pandap.Api.Controllers
 
 
             return sonuc;
+        }
+
+     
+        [HttpPost]
+       public string Kaydet(FormYatayData model)
+        {
+            return "aaa";
+          
         }
 
 
