@@ -1,4 +1,4 @@
-export interface FormSoru {
+export class FormSoru {
     Id:number
     FormAdi:string
     Makina:string

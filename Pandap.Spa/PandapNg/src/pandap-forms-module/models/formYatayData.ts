@@ -1,4 +1,6 @@
-export interface FormYatayData {
+import SoruCevapExtra from './SoruCevapExtra';
+
+export class FormYatayData {
 Id:number
 SatirGuid:string
 FormAdi:string
@@ -6,6 +8,7 @@ MakinaKod:string
 IslemTarih:Date
 KullaniciId:String
 CevapJson:string
+CevapEktraObj:SoruCevapExtra
 S01:string
 S02:string
 S03:string

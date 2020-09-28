@@ -25,7 +25,8 @@ export class FormgunlukComponent implements OnInit {
   }
 
   edit(formgunluk: FormGunluk) {
-  
-    this.router.navigateByUrl(`kestirimci-bakim/formYatayData/${formgunluk.FormAd}/${formgunluk.Id}`);
+    this.router.navigateByUrl(
+      `pandap-forms/formYatayData/${formgunluk.FormAd}/${formgunluk.Id}`
+    );
   }
 }

@@ -1,4 +1,4 @@
-export interface FormGunluk {
+export class FormGunluk {
     Id: number;
     FormAd: string;
     FormOlusturmaTarihi: Date ;

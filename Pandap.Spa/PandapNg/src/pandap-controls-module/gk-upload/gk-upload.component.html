@@ -1,0 +1,28 @@
+<div>
+  <input
+    accept="audio/*,video/*,image/*"
+    #fileInput
+    style="display: none"
+    type="file"
+    (change)="onFileSelected($event)"
+  />
+  <button class="btn btn-secondary btn-sm mt-1 mb-1" (click)="fileInput.click()">
+    Resim / Video Ekle
+  </button>
+
+  <div [innerHTML]="ProgressMessage"></div>
+
+  <section *ngFor="let dosya of cevapExtraData?.Dosyalar">
+
+    <div class="d-flex">
+
+      <div [innerHTML]="dosya.DosyaAd"></div>
+
+       <button  (click)="onDosyaSil(dosya)" style="color: red;font-weight: 600;" class="btn btn-link btn-sm">
+          <span>X</span>
+        </button>
+    </div>
+ 
+ </section>
+
+</div>

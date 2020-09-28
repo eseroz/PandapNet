@@ -45,34 +45,54 @@
               Kestirici Bakım
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a  [routerLink]="['/kestirimci-bakim/formGunluk']" class="dropdown-item" href="#">Bugün Bakılacaklar</a>
+              <a
+                [routerLink]="['/pandap-forms/formGunluk']"
+                class="dropdown-item"
+                href="#"
+                >Bugün Bakılacaklar</a
+              >
               <div class="dropdown-divider"></div>
-              <a  [routerLink]="['/kestirimci-bakim/formliste']" class="dropdown-item" href="#">Form Tanımları</a>
+              <a
+                [routerLink]="['/pandap-forms/formliste']"
+                class="dropdown-item"
+                href="#"
+                >Form Tanımları</a
+              >
             </div>
           </li>
 
           <li
-          [routerLinkActive]="['link-active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-item dropdown"
-        >
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-item dropdown"
           >
-            Ebys
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a  [routerLink]="['/kestirimci-bakim/formGunluk']" class="dropdown-item" href="#">Gelen Evrak</a>
-            <div class="dropdown-divider"></div>
-            <a  [routerLink]="['/kestirimci-bakim/formliste']" class="dropdown-item" href="#">Giden Evrak</a>
-          </div>
-        </li>
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Ebys
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a
+                [routerLink]="['/pandap-forms/formGunluk']"
+                class="dropdown-item"
+                href="#"
+                >Gelen Evrak</a
+              >
+              <div class="dropdown-divider"></div>
+              <a
+                [routerLink]="['/pandap-forms/formliste']"
+                class="dropdown-item"
+                href="#"
+                >Giden Evrak</a
+              >
+            </div>
+          </li>
         </ul>
       </div>
     </div>

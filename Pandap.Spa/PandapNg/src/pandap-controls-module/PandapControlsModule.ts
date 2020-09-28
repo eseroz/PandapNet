@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { GkUploadComponent } from './gk-upload/gk-upload.component';
 
 
-
 @NgModule({
   declarations: [GkUploadComponent],
   imports: [
     CommonModule
   ],
-  exports:      
-  [ 
+  exports: [
     GkUploadComponent
   ]
 })
-export class GkControlsModule { }
+export class PandapControlsModule {
+}

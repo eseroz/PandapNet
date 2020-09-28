@@ -44,7 +44,7 @@ namespace Pandap.Api.Controllers
 
            
 
-            string dosyaLinkText = @"<a href=http://localhost:63075/api/uploadfile/getir?filename=" + yeniDosyaAdi + " target=_blank>" + yeniDosyaAdi + "</a>";
+            string dosyaLinkText = @"<a href=http://localhost:63075/api/uploadfile/getir?filename=" + yeniDosyaAdi + " target=_blank>" + file.FileName + "</a>";
 
             return new string[] { dosyaLinkText }; 
 

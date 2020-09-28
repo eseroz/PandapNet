@@ -1,33 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormListeComponent } from 'src/kestirimci-bakim/form-liste/form-liste.component';
-import { FormSorularComponent } from 'src/kestirimci-bakim/form-sorular/form-sorular.component';
-import { FormYatayDataEditComponent } from 'src/kestirimci-bakim/form-yatay-data-edit/form-yatay-data-edit.component';
-import { FormgunlukComponent } from 'src/kestirimci-bakim/formgunluk/formgunluk.component';
+import { FormListeComponent } from 'src/pandap-forms-module/form-liste/form-liste.component';
+import { FormSorularComponent } from 'src/pandap-forms-module/form-sorular/form-sorular.component';
+import { FormYatayDataEditComponent } from 'src/pandap-forms-module/form-yatay-data-edit/form-yatay-data-edit.component';
+import { FormgunlukComponent } from 'src/pandap-forms-module/formgunluk/formgunluk.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   {
-    path: 'kestirimci-bakim/formliste',
+    path: 'pandap-forms/formliste',
     component: FormListeComponent,
   },
 
   {
-    path: 'kestirimci-bakim/formGunluk',
+    path: 'pandap-forms/formGunluk',
     component: FormgunlukComponent,
   },
 
   {
-    path: 'kestirimci-bakim/formYatayData/:formAd/:formGunlukId',
+    path: 'pandap-forms/formYatayData/:formAd/:formGunlukId',
     component: FormYatayDataEditComponent,
   },
 
   {
-    path: 'kestirimci-bakim/formSorular',
+    path: 'pandap-forms/formSorular',
     component: FormSorularComponent,
   },
-
 ];
 
 @NgModule({

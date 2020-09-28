@@ -6,35 +6,26 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-liste',
-  templateUrl: './form-liste.component.html'
-
+  templateUrl: './form-liste.component.html',
 })
 export class FormListeComponent implements OnInit {
   public FormTanims: FormTanim[];
 
   public baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient,private router: Router) {
-   
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-
-
-    this.FormTanims =
-       await this.http.get<FormTanim[]>(this.baseUrl + 'FormTanim/FormlariGetir')
+    this.FormTanims = await this.http
+      .get<FormTanim[]>(this.baseUrl + 'FormTanim/FormlariGetir')
       .toPromise();
   }
 
-  edit()
-  {
-      this.router.navigateByUrl('kestirimci-bakim/formSorular');
+  edit() {
+    this.router.navigateByUrl('pandap-forms/formSorular');
   }
 
-  yeniForm()
-  {
-    alert("yeni form");
+  yeniForm() {
+    alert('yeni form');
   }
-    
 }
-

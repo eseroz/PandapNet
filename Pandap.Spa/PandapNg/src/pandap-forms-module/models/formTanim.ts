@@ -1,4 +1,4 @@
-export interface FormTanim {
+export class FormTanim {
     Id: number;
     FormAdıUzun: string;
     FormAd: string;
