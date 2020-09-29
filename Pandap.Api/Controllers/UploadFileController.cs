@@ -41,9 +41,10 @@ namespace Pandap.Api.Controllers
             fs.Flush();
             fs.Close();
 
-           
 
-            string dosyaLinkText = @"<a href=http://localhost:63075/api/uploadfile/getir?filename=" + yeniDosyaAdi + " target=_blank>" + file.FileName + "</a>";
+            string dosyaLinkText = @"<a href=http://www.pandap.net/api/uploadfile/getir?filename=" + yeniDosyaAdi + " target=_blank>" + file.FileName + "</a>";
+
+   //         string dosyaLinkText = @"<a href=http://localhost:63075/api/uploadfile/getir?filename=" + yeniDosyaAdi + " target=_blank>" + file.FileName + "</a>";
 
             return new string[] { dosyaLinkText }; 
 

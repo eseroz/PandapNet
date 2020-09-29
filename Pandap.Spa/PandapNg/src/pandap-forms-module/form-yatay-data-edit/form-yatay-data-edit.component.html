@@ -1,4 +1,4 @@
-<main class="col-md-8" style="margin: auto">
+<main class="col-md-10  col-xl-8" style="margin: auto">
   <div
     style="
       display: flex;
@@ -9,7 +9,7 @@
       color: white;
     "
   >
-    <h3>KESTİRİCİ BAKIM KONTROL FORMU</h3>
+    <h3>KESTİRİMCİ BAKIM KONTROL FORMU</h3>
   </div>
 
   <div
@@ -30,6 +30,7 @@
   </div>
 
   <div *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
+    
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section-main'">
       <article
         style="
@@ -74,6 +75,15 @@
             {{ formSoru.SoruKod }} - {{ formSoru.Soru }}
           </h6>
 
+          <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'text-readonly'">
+            <input
+              type="text"
+              readonly
+              class="form-control"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            />
+          </ng-template>
+
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'text'">
             <input
               type="text"
@@ -81,6 +91,15 @@
               [(ngModel)]="FormYatayData[formSoru.SoruKod]"
             />
           </ng-template>
+
+          <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'number'">
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            />
+          </ng-template>
+
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'date'">
             <input
@@ -105,10 +124,12 @@
             </select>
           </ng-template>
 
-          <gk-upload
-            [soruKod]="formSoru.SoruKod"
-            [data]="FormYatayData['CevapEktraObj']"
-          ></gk-upload>
+          <ng-template [ngIf]="FormYatayData[formSoru.SoruKod]==='UYGUN DEĞİL'">
+            <gk-upload class="mt-10"
+              [soruKod]="formSoru.SoruKod"
+              [data]="FormYatayData['CevapEktraObj']"
+            ></gk-upload>
+          </ng-template>
         </div>
       </article>
     </ng-template>

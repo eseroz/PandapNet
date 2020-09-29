@@ -75,6 +75,6 @@ export class FormYatayDataEditComponent implements OnInit {
 
     let sonuc=await this.http.post(yol, this.FormYatayData, { ...options, responseType: 'text' }).toPromise();
 
-    console.log(sonuc);
+    alert("Kayıt işlemi tamalandı");
   }
 }
