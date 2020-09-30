@@ -34,9 +34,8 @@ namespace Pandap.Api
                     builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
-                  
-                  
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin=>true);
                 });
             });
 
