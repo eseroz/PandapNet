@@ -15,13 +15,13 @@
   <article>
     
   </article>
-  <section *ngFor="let dosya of cevapExtraData?.Dosyalar">
+  <section *ngFor="let dosyaAd of dosyaIsimleri">
 
     <div class="d-flex">
 
-      <div [innerHTML]="dosya.DosyaAd"></div>
+      <div [innerHTML]="dosyaAd"></div>
 
-       <button  (click)="onDosyaSil(dosya)" style="color: red;font-weight: 600;" class="btn btn-link btn-sm">
+       <button  (click)="onDosyaSil(dosyaAd)" style="color: red;font-weight: 600;" class="btn btn-link btn-sm">
           <span>X</span>
         </button>
     </div>

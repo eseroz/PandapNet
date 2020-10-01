@@ -8,7 +8,7 @@ MakinaKod:string
 IslemTarih:Date
 KullaniciId:String
 CevapJson:string
-CevapEktraObj:SoruCevapExtra
+CevapEktraObj:SoruCevapExtra[]
 S01:string
 S02:string
 S03:string

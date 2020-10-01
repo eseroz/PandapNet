@@ -52,7 +52,17 @@ export class FormYatayDataEditComponent implements OnInit {
 
     this.FormYatayData.CevapEktraObj = JSON.parse(this.FormYatayData.CevapJson);
 
-    console.log(this.FormYatayData);
+    let extraObj=this.FormYatayData.CevapEktraObj;
+
+    for (var i = 1; i <100; i++) {
+      let propName="S" +i.toString().padStart(2, '0');
+   
+      if(extraObj[propName]==null)
+      {
+        extraObj[propName]={Aciklama:"Metin Aciklama",Dosyalar:[]}
+      }
+
+    }
 
     this.FormSorular = await this.http
       .get<FormSoru[]>(

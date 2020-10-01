@@ -18,47 +18,31 @@ export class GkUploadComponent implements OnInit {
   public baseUrl: string = environment.baseUrl;
   ProgressMessage: string;
 
-  @Input() data: Array<SoruCevapExtra>;
-  @Input() soruKod: string;
+  @Input() cevapObj: any;
 
-  cevapExtraData: SoruCevapExtra;
+  dosyaIsimleri=[];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-     let cevapExtra = this.data.find((c) => c.SoruKod == this.soruKod);
+    // this.dosyaIsimleri=this.cevapObj.Dosyalar;
 
-     console.log(this.soruKod,cevapExtra);
-
-     this.cevapExtraData=cevapExtra;
+    console.log(this.cevapObj);
+ 
   }
 
-  onDosyaSil(dosya: any) {
-    this.cevapExtraData.Dosyalar = this.cevapExtraData.Dosyalar.filter(
-      (c) => c.DosyaAd != dosya.DosyaAd
-    );
+  onDosyaSil(dosyaAd: string) {
+    this.cevapObj = this.cevapObj.Dosyalar.filter(item => item !== dosyaAd);
+    console.log(this.cevapObj);
   }
 
   onDosyaYuklendi(dosyaAd: string) {
-
-    let dosyaData = { DosyaAd: dosyaAd };
-    this.cevapExtraData.Dosyalar.push(dosyaData);
+    this.dosyaIsimleri.push(dosyaAd);
 
   }
 
   onFileSelected(event) {
     var selectedFile = event.target.files[0];
-
-    // if (!selectedFile.type.includes('image')) {
-    //   alert('Sadece resim dosyası yükleyebilirsiniz');
-    //   return;
-    // }
-
-    // if (selectedFile.size > 20000000) {
-    //   alert('Dosya çok büyük');
-    //   return;
-    // }
-
     var url = this.baseUrl + 'UploadFile/yukle';
 
     const fd = new FormData();
@@ -72,9 +56,6 @@ export class GkUploadComponent implements OnInit {
       })
       .subscribe((event) => {
         var result = this.getEventMessage(event, selectedFile);
-
-      
-
         this.ProgressMessage = result;
 
         if(event.type===4)

@@ -126,9 +126,12 @@
 
           <ng-template [ngIf]="FormYatayData[formSoru.SoruKod]==='UYGUN DEĞİL'">
             <gk-upload class="mt-10"
-              [soruKod]="formSoru.SoruKod"
-              [data]="FormYatayData['CevapEktraObj']"
+              [cevapObj]="FormYatayData.CevapEktraObj"
+             
             ></gk-upload>
+
+            <input type="text" class="form-control" [(ngModel)]="FormYatayData.CevapEktraObj[formSoru.SoruKod].Aciklama" placeholder="Açıklama"/>
+
           </ng-template>
         </div>
       </article>
