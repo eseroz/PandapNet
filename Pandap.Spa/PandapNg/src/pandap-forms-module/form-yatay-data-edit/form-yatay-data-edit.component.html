@@ -126,7 +126,7 @@
 
           <ng-template [ngIf]="FormYatayData[formSoru.SoruKod]==='UYGUN DEĞİL'">
             <gk-upload class="mt-10"
-              [cevapObj]="FormYatayData.CevapEktraObj"
+              [dosyalar]="FormYatayData.CevapEktraObj[formSoru.SoruKod].Dosyalar"
              
             ></gk-upload>
 

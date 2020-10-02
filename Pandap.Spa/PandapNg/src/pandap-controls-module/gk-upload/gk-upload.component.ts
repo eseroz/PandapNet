@@ -18,26 +18,25 @@ export class GkUploadComponent implements OnInit {
   public baseUrl: string = environment.baseUrl;
   ProgressMessage: string;
 
-  @Input() cevapObj: any;
-
-  dosyaIsimleri=[];
+  @Input() dosyalar: string[];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     // this.dosyaIsimleri=this.cevapObj.Dosyalar;
 
-    console.log(this.cevapObj);
+  
  
   }
 
   onDosyaSil(dosyaAd: string) {
-    this.cevapObj = this.cevapObj.Dosyalar.filter(item => item !== dosyaAd);
-    console.log(this.cevapObj);
+    
+    this.dosyalar.splice(0, 1); 
+    console.log(this.dosyalar);
   }
 
   onDosyaYuklendi(dosyaAd: string) {
-    this.dosyaIsimleri.push(dosyaAd);
+    this.dosyalar.push(dosyaAd);
 
   }
 
