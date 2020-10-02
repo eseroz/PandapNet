@@ -31,8 +31,9 @@ export class GkUploadComponent implements OnInit {
 
   onDosyaSil(dosyaAd: string) {
     
-    this.dosyalar.splice(0, 1); 
-    console.log(this.dosyalar);
+    const index: number = this.dosyalar.indexOf(dosyaAd);
+    this.dosyalar.splice(index, 1);
+   
   }
 
   onDosyaYuklendi(dosyaAd: string) {
