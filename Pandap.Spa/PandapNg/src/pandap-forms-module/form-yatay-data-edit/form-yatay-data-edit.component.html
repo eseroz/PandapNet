@@ -96,7 +96,8 @@
             <input
               type="number"
               class="form-control"
-              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+              [ngModel]="FormYatayData[formSoru.SoruKod]"
+              (ngModelChange)="FormYatayData[formSoru.SoruKod] = $event.toString()"
             />
           </ng-template>
 
