@@ -7,6 +7,7 @@ import { FormYatayDataEditComponent } from './form-yatay-data-edit/form-yatay-da
 import { FormsModule } from '@angular/forms';
 import { FormSorularComponent } from './form-sorular/form-sorular.component';
 import { PandapControlsModule } from "src/pandap-controls-module/PandapControlsModule";
+import { DateFromUTCPipe } from './utils/DateFromUTCPipe';
 
 
 @NgModule({
@@ -15,6 +16,8 @@ import { PandapControlsModule } from "src/pandap-controls-module/PandapControlsM
     FormgunlukComponent,
     FormYatayDataEditComponent,
     FormSorularComponent,
+    DateFromUTCPipe
+
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, PandapControlsModule],
   exports: [

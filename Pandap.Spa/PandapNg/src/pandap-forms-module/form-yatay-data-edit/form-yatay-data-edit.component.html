@@ -106,7 +106,8 @@
             <input
               type="date"
               class="form-control"
-              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+              [ngModel]="FormYatayData[formSoru.SoruKod] | DateFromUTCPipe"
+              (ngModelChange)="FormYatayData[formSoru.SoruKod] = $event"
             />
           </ng-template>
 
