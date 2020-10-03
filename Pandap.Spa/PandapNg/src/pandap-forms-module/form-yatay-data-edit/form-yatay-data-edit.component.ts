@@ -107,7 +107,7 @@ export class FormYatayDataEditComponent implements OnInit {
     console.log(min,max,deger);
 
     if (deger < min || deger > max) {
-      this.FormYatayData.CevapEktraObj[soruKod].Uyari = 'Aralık Dışı';
+      this.FormYatayData.CevapEktraObj[soruKod].Uyari = 'Aralık dışı değer. Uygun aralık [' +  soru.MinMax + ']';
     } else {
       this.FormYatayData.CevapEktraObj[soruKod].Uyari = '';
      

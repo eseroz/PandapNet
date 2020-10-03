@@ -95,6 +95,7 @@
             <input
               type="number"
               class="form-control"
+              [ngClass]="{'is-invalid':FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''}"
               [ngModel]="FormYatayData[formSoru.SoruKod]"
               (ngModelChange)="modelChangeNumber($event, formSoru.SoruKod)"
             />
@@ -102,7 +103,7 @@
             <ng-template
               [ngIf]="FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''"
             >
-              <div class="alert alert-danger">
+              <div class="invalid-feedback d-block">
                 {{ FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari }}
               </div>
             </ng-template>
