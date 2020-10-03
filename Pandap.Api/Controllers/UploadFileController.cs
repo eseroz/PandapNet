@@ -41,7 +41,9 @@ namespace Pandap.Api.Controllers
             fs.Flush();
             fs.Close();
 
-            string dosyaLinkText = $@"<a href={Request.Host}/api/uploadfile/getir?filename={yeniDosyaAdi} target=_blank>{file.FileName}</a>";
+            var httpType = Request.IsHttps ? "https" : "http";
+
+            string dosyaLinkText = $@"<a href={httpType}://{Request.Host}/api/uploadfile/getir?filename={yeniDosyaAdi} target=_blank>{file.FileName}</a>";
 
             return new string[] { dosyaLinkText }; 
 

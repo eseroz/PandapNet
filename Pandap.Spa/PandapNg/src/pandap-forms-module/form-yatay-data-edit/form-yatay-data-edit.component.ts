@@ -59,7 +59,7 @@ export class FormYatayDataEditComponent implements OnInit {
    
       if(extraObj[propName]==null)
       {
-        extraObj[propName]={Aciklama:"Metin Aciklama",Dosyalar:[]}
+        extraObj[propName]={Aciklama:"",Dosyalar:[]}
       }
 
     }
