@@ -43,6 +43,12 @@ export class FormYatayDataEditComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.FormSorular = await this.http
+      .get<FormSoru[]>(
+        this.baseUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
+      )
+      .toPromise();
+
     this.FormYatayData = await this.http
       .get<FormYatayData>(
         this.baseUrl +
@@ -52,39 +58,60 @@ export class FormYatayDataEditComponent implements OnInit {
 
     this.FormYatayData.CevapEktraObj = JSON.parse(this.FormYatayData.CevapJson);
 
-    let extraObj=this.FormYatayData.CevapEktraObj;
+    let extraObj = this.FormYatayData.CevapEktraObj;
 
-    for (var i = 1; i <100; i++) {
-      let propName="S" +i.toString().padStart(2, '0');
-   
-      if(extraObj[propName]==null)
-      {
-        extraObj[propName]={Aciklama:"",Dosyalar:[]}
+    for (var i = 1; i < 100; i++) {
+      let propName = 'S' + i.toString().padStart(2, '0');
+
+      if (extraObj[propName] == null) {
+        extraObj[propName] = { Aciklama: '', Dosyalar: [] };
       }
-
     }
-
-    this.FormSorular = await this.http
-      .get<FormSoru[]>(
-        this.baseUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
-      )
-      .toPromise();
   }
   async kaydet() {
-
-    this.FormYatayData.CevapJson=JSON.stringify(this.FormYatayData.CevapEktraObj);
+    this.FormYatayData.CevapJson = JSON.stringify(
+      this.FormYatayData.CevapEktraObj
+    );
 
     console.log(this.FormYatayData);
 
-    let options = { headers: {
+    let options = {
+      headers: {
         'Content-Type': 'application/json',
-      }
+      },
     };
 
     let yol = this.baseUrl + `FormYatayData/Kaydet`;
 
-    let sonuc=await this.http.post(yol, this.FormYatayData, { ...options, responseType: 'text' }).toPromise();
+    let sonuc = await this.http
+      .post(yol, this.FormYatayData, { ...options, responseType: 'text' })
+      .toPromise();
 
-    alert("Kayıt işlemi tamalandı");
+    alert('Kayıt işlemi tamalandı');
+  }
+
+  modelChangeNumber($event: number, soruKod: string) {
+
+    this.FormYatayData.CevapEktraObj[soruKod].Uyari = '';
+
+    if ($event == null) return $event;
+
+    this.FormYatayData[soruKod] = $event.toString();
+    var soru = this.FormSorular.find((c) => c.SoruKod == soruKod);
+
+    var min = parseFloat(soru.MinMax.split('-')[0].replace(',','.'));
+    var max = parseFloat(soru.MinMax.split('-')[1].replace(',','.'));
+    var deger = parseFloat($event.toString());
+
+
+    console.log(min,max,deger);
+
+    if (deger < min || deger > max) {
+      this.FormYatayData.CevapEktraObj[soruKod].Uyari = 'Aralık Dışı';
+    } else {
+      this.FormYatayData.CevapEktraObj[soruKod].Uyari = '';
+     
+    }
+    console.log(deger,this.FormYatayData.CevapEktraObj[soruKod]);
   }
 }
