@@ -7,7 +7,7 @@ export class FormSoru {
     HtmlKontrolTip:string
     KontrolTip:string
     MinMax:string
-    ZorunluMu:string
+    ZorunluMu:boolean
     VarsayılanDeğer:string
     Secenekler:string
   }

@@ -1,63 +1,27 @@
 <main class="col-md-10 col-xl-8" style="margin: auto">
-  <div
-    style="
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      padding: 15px;
-      background: darkblue;
-      color: white;
-    "
-  >
+  <div class="formMain">
     <h3>KESTİRİMCİ BAKIM KONTROL FORMU</h3>
   </div>
 
-  <div
-    style="
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: flex-end;
-      background: white;
-    "
-  >
+  <nav class="sticky">
     <button
       style="margin: 5px; width: 100px"
-      class="btn btn-primary"
+      class="btn btn-success"
       (click)="kaydet()"
     >
       Kaydet
     </button>
-  </div>
+  </nav>
 
   <div *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section-main'">
-      <article
-        style="
-          padding: 15px;
-          background-color: blueviolet;
-          display: flex;
-          align-items: center;
-          color: white;
-          margin-bottom: -15px;
-        "
-      >
+      <article class="section-main">
         <div>{{ formSoru.Soru }}</div>
       </article>
     </ng-template>
 
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section'">
-      <article
-        style="
-          padding: 10px;
-          margin-left: 50px;
-
-          background-color: rgba(137, 43, 226, 0.568);
-          display: flex;
-          align-items: center;
-          color: white;
-          margin-bottom: -10px;
-        "
-      >
+      <article class="section">
         <div>{{ formSoru.Soru }}</div>
       </article>
     </ng-template>
@@ -95,13 +59,18 @@
             <input
               type="number"
               class="form-control"
-              [ngClass]="{'is-invalid':FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''}"
+              [ngClass]="{
+                'is-invalid':
+                  FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''
+              }"
               [ngModel]="FormYatayData[formSoru.SoruKod]"
               (ngModelChange)="modelChangeNumber($event, formSoru.SoruKod)"
             />
 
             <ng-template
-              [ngIf]="FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''"
+              [ngIf]="
+                FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari !== ''
+              "
             >
               <div class="invalid-feedback d-block">
                 {{ FormYatayData.CevapEktraObj[formSoru.SoruKod].Uyari }}
@@ -155,22 +124,5 @@
         </div>
       </article>
     </ng-template>
-  </div>
-
-  <div
-    style="
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: flex-end;
-      background: white;
-    "
-  >
-    <button
-      style="margin: 5px; width: 100px"
-      class="btn btn-primary"
-      (click)="kaydet()"
-    >
-      Kaydet
-    </button>
   </div>
 </main>

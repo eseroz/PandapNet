@@ -17,10 +17,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { FormSoru } from '../models/formSoru';
 import { ActivatedRoute, Router } from '@angular/router';
 import SoruCevapExtra from '../models/SoruCevapExtra';
+import { chdir } from 'process';
 
 @Component({
   selector: 'app-form-yatay-data-edit',
   templateUrl: './form-yatay-data-edit.component.html',
+  styleUrls:['./form-yatay-data-edit.component.css']
 })
 export class FormYatayDataEditComponent implements OnInit {
   public FormYatayData: FormYatayData;
@@ -69,6 +71,14 @@ export class FormYatayDataEditComponent implements OnInit {
     }
   }
   async kaydet() {
+    let validationText=this.isFormValid();
+
+    if(validationText.length>0)
+    {
+      alert(validationText);
+      return;
+    }
+
     this.FormYatayData.CevapJson = JSON.stringify(
       this.FormYatayData.CevapEktraObj
     );
@@ -90,11 +100,35 @@ export class FormYatayDataEditComponent implements OnInit {
     alert('Kayıt işlemi tamalandı');
   }
 
+
+  isFormValid()
+  {
+    let validationText="";
+
+    for (var item of this.FormSorular) {
+      if(item.ZorunluMu===true &&  !this.FormYatayData[item.SoruKod])
+      {
+        let uyariText=item.SoruKod + " : Bu alanın girilmesi zorunludur. \n";
+        this.FormYatayData.CevapEktraObj[item.SoruKod].Uyari= uyariText;
+        validationText+=uyariText;
+
+      }
+     
+    }
+
+    return validationText;
+
+  }
+
+
   modelChangeNumber($event: number, soruKod: string) {
 
     this.FormYatayData.CevapEktraObj[soruKod].Uyari = '';
 
-    if ($event == null) return $event;
+    if ($event == null){
+      this.FormYatayData[soruKod] =null;
+      return $event;
+    } 
 
     this.FormYatayData[soruKod] = $event.toString();
     var soru = this.FormSorular.find((c) => c.SoruKod == soruKod);
