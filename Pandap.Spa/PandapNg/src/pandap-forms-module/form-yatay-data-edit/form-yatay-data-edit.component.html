@@ -1,28 +1,69 @@
 <main class="col-md-10 col-xl-8" style="margin: auto">
-  <div class="formMain">
-    <h3>KESTİRİMCİ BAKIM KONTROL FORMU</h3>
-  </div>
-
-  <nav class="sticky">
-    <button
-      style="margin: 5px; width: 100px"
-      class="btn btn-success"
-      (click)="kaydet()"
+  <div
+    class="card rounded-3 sticky"
+    style="padding: 0px; margin-bottom: 14px; overflow: hidden"
+  >
+    <div
+      style="
+        background-color: rgb(63, 81, 181);
+        height: 10px;
+        padding-left: 0px;
+        margin-bottom: 5px;
+      "
+    ></div>
+    <nav
+      style="
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: flex-start;
+      "
     >
-      Kaydet
-    </button>
-  </nav>
+      <div style="padding: 0; font-size: 28px">
+        KESTİRİMCİ BAKIM KONTROL FORMU
+      </div>
+      <button
+        style="margin: 5px; width: 100px"
+        class="btn btn-primary"
+        (click)="kaydet()"
+      >
+        Kaydet
+      </button>
+    </nav>
+  </div>
 
   <div *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section-main'">
-      <article class="section-main">
-        <div>{{ formSoru.Soru }}</div>
+      <article class="card rounded">
+        <div
+          style="
+            background-color: darkmagenta;
+            height: 12px;
+            padding-left: 0px;
+            margin-bottom: 5px;
+           
+          "
+        ></div>
+        <h4 style="margin-left: 20px;">
+          {{ formSoru.Soru }}
+        </h4>
       </article>
     </ng-template>
 
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section'">
-      <article class="section">
-        <div>{{ formSoru.Soru }}</div>
+      <article class="card rounded">
+      <div
+        style="
+          background-color:darkmagenta;
+          height: 8px;
+          padding-left: 0px;
+          margin-bottom: 5px;
+          margin-left: 25px;
+        "
+      ></div>
+      <h4 style="margin-left: 45px;font-size: 20px;">
+        {{ formSoru.Soru }}
+      </h4>
       </article>
     </ng-template>
 
@@ -32,12 +73,15 @@
         formSoru.HtmlKontrolTip != 'section-main'
       "
     >
-      <article class="card" style="margin: auto">
+      <article class="card rounded-3" style="margin: auto">
         <div class="card-body">
           <h6 class="card-title">
             {{ formSoru.SoruKod }} - {{ formSoru.Soru }}
-          </h6>
 
+            <ng-template [ngIf]="formSoru.MinMax">
+              <span>({{ formSoru.MinMax }})</span>
+            </ng-template>
+          </h6>
 
           <div style="color: red; font-size: 14px" class="mb-2">
             {{ formSoru.SoruOzelAciklama }}
@@ -108,37 +152,53 @@
           </ng-template>
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'radio'">
-            
-            <div class="form-check" *ngFor="let deger of formSoru.Secenekler.split(';');let i = index">
-              <input   [value]="deger"
-              type="radio"
-              [attr.name]="formSoru.SoruKod"
-              [attr.id]= "formSoru.SoruKod + '_' + i"
-              class="form-check-input"
-              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            <div
+              class="form-check"
+              *ngFor="
+                let deger of formSoru.Secenekler.split(';');
+                let i = index
+              "
             >
+              <input
+                [value]="deger"
+                type="radio"
+                [attr.name]="formSoru.SoruKod"
+                [attr.id]="formSoru.SoruKod + '_' + i"
+                class="form-check-input"
+                [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+              />
 
-            <label class="form-check-label"  [attr.for]="formSoru.SoruKod + '_' + i">{{deger}}</label><br>
+              <label
+                class="form-check-label"
+                [attr.for]="formSoru.SoruKod + '_' + i"
+                >{{ deger }}</label
+              ><br />
             </div>
-          
-         
           </ng-template>
 
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'check'">
-            
-            <div class="form-check" *ngFor="let deger of formSoru.Secenekler.split(';');let i = index">
-              <input   [value]="deger"
-              type="radio"
-              [attr.name]="formSoru.SoruKod"
-              [attr.id]= "formSoru.SoruKod + '_' + i"
-              class="form-check-input"
-              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            <div
+              class="form-check"
+              *ngFor="
+                let deger of formSoru.Secenekler.split(';');
+                let i = index
+              "
             >
+              <input
+                [value]="deger"
+                type="radio"
+                [attr.name]="formSoru.SoruKod"
+                [attr.id]="formSoru.SoruKod + '_' + i"
+                class="form-check-input"
+                [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+              />
 
-            <label class="form-check-label"  [attr.for]="formSoru.SoruKod + '_' + i">{{deger}}</label><br>
+              <label
+                class="form-check-label"
+                [attr.for]="formSoru.SoruKod + '_' + i"
+                >{{ deger }}</label
+              ><br />
             </div>
-          
-         
           </ng-template>
 
           <ng-template
