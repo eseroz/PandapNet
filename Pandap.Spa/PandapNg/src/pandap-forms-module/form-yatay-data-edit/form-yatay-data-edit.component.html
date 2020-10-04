@@ -107,6 +107,40 @@
             </select>
           </ng-template>
 
+          <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'radio'">
+            
+            <div class="form-check" *ngFor="let deger of formSoru.Secenekler.split(';');let i = index">
+              <input   [value]="deger"
+              type="radio"
+              [attr.name]="formSoru.SoruKod"
+              [attr.id]= "formSoru.SoruKod + '_' + i"
+              class="form-check-input"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            >
+
+            <label class="form-check-label"  [attr.for]="formSoru.SoruKod + '_' + i">{{deger}}</label><br>
+            </div>
+          
+         
+          </ng-template>
+
+          <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'check'">
+            
+            <div class="form-check" *ngFor="let deger of formSoru.Secenekler.split(';');let i = index">
+              <input   [value]="deger"
+              type="radio"
+              [attr.name]="formSoru.SoruKod"
+              [attr.id]= "formSoru.SoruKod + '_' + i"
+              class="form-check-input"
+              [(ngModel)]="FormYatayData[formSoru.SoruKod]"
+            >
+
+            <label class="form-check-label"  [attr.for]="formSoru.SoruKod + '_' + i">{{deger}}</label><br>
+            </div>
+          
+         
+          </ng-template>
+
           <ng-template
             [ngIf]="FormYatayData[formSoru.SoruKod] === 'UYGUN DEĞİL'"
           >
