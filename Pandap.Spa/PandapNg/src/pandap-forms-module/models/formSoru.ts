@@ -4,6 +4,7 @@ export class FormSoru {
     Makina:string
     SoruKod:string
     Soru:string
+    SoruOzelAciklama:string
     HtmlKontrolTip:string
     KontrolTip:string
     MinMax:string

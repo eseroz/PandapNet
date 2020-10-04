@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormYatayData } from '../models/formYatayData';
 import {
   HttpClient,
@@ -32,6 +32,9 @@ export class FormYatayDataEditComponent implements OnInit {
   public baseUrl: string = environment.baseUrl;
   FormAd: string;
   FormGunlukId: string;
+  @ViewChild('btnSoruInfo') btnSoruInfo; 
+
+  
 
   constructor(
     private http: HttpClient,
@@ -117,6 +120,15 @@ export class FormYatayDataEditComponent implements OnInit {
     }
 
     return validationText;
+
+  }
+
+  soruInfo()
+  {
+    
+    this.btnSoruInfo.nativeElement.setAttribute('data-content','dikkat et');
+
+    this.btnSoruInfo.nativeElement.show();
 
   }
 

@@ -17,6 +17,8 @@ namespace Pandap.Api.DataModels
         public string SoruKod { get; set; }
         public string Soru { get; set; }
 
+        public string SoruOzelAciklama { get; set; }
+
         public string HtmlKontrolTip { get; set; }
         public string KontrolTip { get; set; }
         public string MinMax { get; set; }

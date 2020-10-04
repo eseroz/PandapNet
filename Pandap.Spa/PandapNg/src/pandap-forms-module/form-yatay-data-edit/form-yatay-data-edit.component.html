@@ -38,6 +38,11 @@
             {{ formSoru.SoruKod }} - {{ formSoru.Soru }}
           </h6>
 
+
+          <div style="color: red; font-size: 14px" class="mb-2">
+            {{ formSoru.SoruOzelAciklama }}
+          </div>
+
           <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'text-readonly'">
             <input
               type="text"
