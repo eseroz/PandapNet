@@ -16,8 +16,15 @@ export class FormListeComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
+
+    let options = {
+      headers: {
+        'Authorization':'Bearer ' + localStorage.getItem("token")
+      },
+    };
+
     this.FormTanims = await this.http
-      .get<FormTanim[]>(this.baseUrl + 'FormTanim/FormlariGetir')
+      .get<FormTanim[]>(this.baseUrl + 'FormTanim/FormlariGetir',{ ...options})
       .toPromise();
   }
 
