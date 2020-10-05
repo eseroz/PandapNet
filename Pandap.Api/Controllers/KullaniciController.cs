@@ -21,6 +21,31 @@ namespace pandap.api.Controllers
         }
 
 
+        [HttpPost]
+        public Kullanici KullaniciGetir()
+        {
+            var result = dc.Kullanicilar.First();
+            return result;
+
+        }
+
+        [HttpPost]
+        public Kullanici KullaniciKontrol(string kullaniciId, string password)
+        {
+            var result = dc.Kullanicilar.Where(c => c.KullaniciId == kullaniciId && c.Parola == password).FirstOrDefault();
+
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            { 
+                return null;
+            }
+
+        }
+
+
         [HttpGet]
         public IEnumerable<Kullanici> Get()
         {
