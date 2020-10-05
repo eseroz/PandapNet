@@ -3,6 +3,7 @@ import { jwtHelper } from 'src/common/jwtHelper';
 import { environment } from '../../environments/environment';
 import {AuthService} from 'src/common/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,16 @@ export class HomeComponent implements OnInit {
   AutService: any;
 
 
-  constructor(private auth:AuthService, private http:HttpClient ) {
+  constructor(private auth:AuthService, private http:HttpClient,private router: Router ) {
 
   }
 
   ngOnInit()
   {
-    
+    if(this.auth.loggedIn()==false)
+    {
+      this.router.navigateByUrl('login');
+    }
   }
 
   async login()
