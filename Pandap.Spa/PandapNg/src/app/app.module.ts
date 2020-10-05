@@ -9,6 +9,7 @@ import { PandapFormsModule } from "src/pandap-forms-module/PandapFormsModule";
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
+
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
   imports: [

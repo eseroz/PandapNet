@@ -1,20 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { jwtHelper } from 'src/common/jwtHelper';
 import { environment } from '../../environments/environment';
+import {AuthService} from 'src/common/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public baseUrl: string= environment.baseUrl;
+  AutService: any;
 
 
-  constructor() {
-    var text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJnb2ttZW4xOTc3IiwidW5pcXVlX25hbWUiOiJnb2ttZW4iLCJuYmYiOjE2MDE5MTYwNzEsImV4cCI6MTYwMjAwMjQ3MSwiaWF0IjoxNjAxOTE2MDcxfQ.BlNiJ4_vhyGzZDyoD70n4pkiA1zMXZNNO5dn91vb1c8";
-    let jwt=new jwtHelper(text);
+  constructor(private auth:AuthService, private http:HttpClient ) {
 
-    console.log(jwt.getDecodedToken());
+  }
+
+  ngOnInit()
+  {
+    
+  }
+
+  async login()
+  {
+    
+    let kul1=await this.auth.login("gokmen.yilmaz","123456");
+
   }
 
 

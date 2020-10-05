@@ -31,31 +31,38 @@ namespace pandap.api.Controllers
             this.configuration = configuration;
         }
 
-
         [HttpGet]
-         public Kullanici KullaniciGetir()
+        public IEnumerable<Kullanici> Get()
         {
-            var result = dc.Kullanicilar.First();
+
+            var result = dc.Kullanicilar.ToList();
             return result;
 
         }
 
+
         [HttpPost]
         [AllowAnonymous]
-        public User KullaniciKontrol([FromQuery]string kullaniciId)
+        public Kullanici Login(Kullanici kullaniciModel)
         {
-            var u= GenerateJwtToken();
 
-            var user = new User();
-            user.FirstName = "gokmen";
-            user.Token = u;
+            var kul = dc.Kullanicilar.Where(c => c.KullaniciId == kullaniciModel.KullaniciId)
+                                    .Where(c => c.Parola == kullaniciModel.Parola)
+                                    .FirstOrDefault();
 
-            return user;
 
+            if (kul != null)
+            {
+                kul.Token = GenerateJwtToken(kul);
+                return kul;
+            }
+            else
+                return null;
 
         }
 
-        private string GenerateJwtToken()
+
+        private string GenerateJwtToken(Kullanici kul)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Secret").Value);
@@ -63,8 +70,8 @@ namespace pandap.api.Controllers
             var tokenDesc = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(new Claim[] {
-                    new Claim(ClaimTypes.NameIdentifier, "gokmen1977"),
-                    new Claim(ClaimTypes.Name, "gokmen"),
+                    new Claim(ClaimTypes.NameIdentifier,kul.KullaniciId),
+                    new Claim(ClaimTypes.Name, kul.KullaniciAdSoyad),
                 }),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
@@ -76,13 +83,6 @@ namespace pandap.api.Controllers
 
         }
 
-        [HttpGet]
-        public IEnumerable<Kullanici> Get()
-        {
-
-            var result = dc.Kullanicilar.ToList();
-            return result;
-
-        }
+       
     }
 }

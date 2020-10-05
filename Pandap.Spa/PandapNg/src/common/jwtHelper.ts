@@ -19,4 +19,15 @@ export class jwtHelper
 
     }
 
+    isTokenExpired()
+    {
+        let decodeToken=this.getDecodedToken();
+
+        var now=new Date();
+        var now_seconds=now.getTime()/1000;
+    
+        let isExpired=now_seconds>decodeToken.exp;
+        return isExpired;
+    }
+
 }

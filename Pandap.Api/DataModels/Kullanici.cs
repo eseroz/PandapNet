@@ -1,4 +1,5 @@
 
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,12 +9,20 @@ namespace pandap.api.DataModels
     public class Kullanici
     {
         [Key]
-        public int Id { get; set; }
         public string KullaniciId { get; set; }
 
+        public string KullaniciAdSoyad { get; set; }
+
+        public string Mail { get; set; }
+
+        [JsonIgnore]
         public string Parola { get; set; }
 
         public string KullaniciRol { get; set; }
 
+        public string YetkiliFormlar { get; set; }
+
+        [NotMapped]
+        public string Token { get;  set; }
     }
 }
