@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Pandap.Api
 {
@@ -51,6 +54,24 @@ namespace Pandap.Api
 
             services.AddDbContext<PandapDbContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(y =>
+            {
+                y.RequireHttpsMetadata = false;
+                y.SaveToken = true;
+                y.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey=true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings:Secret").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience=false
+                };
+            });
         }
 
     
@@ -60,6 +81,8 @@ namespace Pandap.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+         
 
             app.Use(async (context, next) =>
             {
@@ -79,10 +102,13 @@ namespace Pandap.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseCors("MyAllowOrigin");
 
-
-            app.UseAuthorization();
+         
+           
 
             app.UseEndpoints(endpoints =>
             {
