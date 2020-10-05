@@ -9,6 +9,7 @@ import { PandapFormsModule } from "src/pandap-forms-module/PandapFormsModule";
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     HttpClientModule,
     PandapFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

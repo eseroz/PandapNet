@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   AutService: any;
 
 
-  constructor(private auth:AuthService, private http:HttpClient,private router: Router ) {
+  constructor(private auth:AuthService,private router: Router ) {
 
   }
 
@@ -26,12 +26,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  async login()
-  {
-    
-    let kul1=await this.auth.login("gokmen.yilmaz","123456");
-
-  }
 
 
 }

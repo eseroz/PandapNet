@@ -11,7 +11,7 @@ export class AuthService {
   public baseUrl: string = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
-  async login(_kullaniciId,_parola){
+  async  login(_kullaniciId,_parola){
     
   
     let kul={kullaniciId:_kullaniciId,parola:_parola}
@@ -24,9 +24,12 @@ export class AuthService {
 
     let yol = this.baseUrl + `Kullanici/Login`;
 
-    let sonuc = await this.http
+    let sonuc:Kullanici = await this.http
       .post(yol, JSON.stringify(kul), { ...options})
       .toPromise();
+
+    
+    
 
     return sonuc;
 
@@ -34,7 +37,7 @@ export class AuthService {
 
   loggedIn()
   {
-    return  localStorage.removeItem("token")!=null;
+    return  localStorage.getItem("token")!=null;
   }
 
   logOut()
