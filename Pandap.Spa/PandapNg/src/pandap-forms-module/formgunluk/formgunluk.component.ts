@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 export class FormgunlukComponent implements OnInit {
   public FormGunluks: FormGunluk[];
   public FormRouter: Router;
-  public baseUrl: string = environment.baseUrl;
+
 
   constructor(private http: HttpClient, private router: Router) {
     this.FormRouter = router;
@@ -20,7 +20,7 @@ export class FormgunlukComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.FormGunluks = await this.http
-      .get<FormGunluk[]>(this.baseUrl + 'FormGunluk/BugunBakilacaklar')
+      .get<FormGunluk[]>(environment.apiUrl + 'FormGunluk/BugunBakilacaklar')
       .toPromise();
   }
 

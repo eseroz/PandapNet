@@ -7,13 +7,12 @@ import { FormSoru } from '../models/formSoru';
   providedIn: 'root',
 })
 export class YatayDataServiceService {
-  public baseUrl: string = environment.baseUrl;
   constructor(private http: HttpClient) {}
 
   async formSorulariGetir() {
     let data = await this.http
       .get<FormSoru[]>(
-        this.baseUrl + `FormSoru/FormSorulariGetir?formAd=SH-Gunluk1`
+       environment.apiUrl + `FormSoru/FormSorulariGetir?formAd=SH-Gunluk1`
       )
       .toPromise();
     return data;

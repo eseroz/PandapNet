@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class FormSorularComponent implements OnInit {
   public FormSorular: FormSoru[];
 
-  public baseUrl: string = environment.baseUrl;
+ 
 
   constructor(private http: HttpClient,private router: Router) {
    
@@ -20,7 +20,7 @@ export class FormSorularComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.FormSorular = await this.http
     .get<FormSoru[]>(
-      this.baseUrl + 'FormSoru/FormSorulariGetir?formAd=SH-Gunluk'
+      environment.apiUrl + 'FormSoru/FormSorulariGetir?formAd=SH-Gunluk'
     )
     .toPromise();
   }

@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class FormListeComponent implements OnInit {
   public FormTanims: FormTanim[];
 
-  public baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -24,7 +23,7 @@ export class FormListeComponent implements OnInit {
     };
 
     this.FormTanims = await this.http
-      .get<FormTanim[]>(this.baseUrl + 'FormTanim/FormlariGetir',{ ...options})
+      .get<FormTanim[]>(environment.apiUrl + 'FormTanim/FormlariGetir',{ ...options})
       .toPromise();
   }
 

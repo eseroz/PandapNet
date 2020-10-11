@@ -8,7 +8,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { FormTanim } from '../models/formTanim';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments/environment';
 import { FormsModule } from '@angular/forms';
 
 import { Observable, of } from 'rxjs';
@@ -29,7 +29,6 @@ export class FormYatayDataEditComponent implements OnInit {
   public FormTanim: FormTanim;
   public FormSorular: FormSoru[];
 
-  public baseUrl: string = environment.baseUrl;
   FormAd: string;
   FormGunlukId: string;
   @ViewChild('btnSoruInfo') btnSoruInfo; 
@@ -50,13 +49,13 @@ export class FormYatayDataEditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.FormSorular = await this.http
       .get<FormSoru[]>(
-        this.baseUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
+        environment.apiUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
       )
       .toPromise();
 
     this.FormYatayData = await this.http
       .get<FormYatayData>(
-        this.baseUrl +
+        environment.apiUrl +
           `FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
       )
       .toPromise();
@@ -94,7 +93,7 @@ export class FormYatayDataEditComponent implements OnInit {
       },
     };
 
-    let yol = this.baseUrl + `FormYatayData/Kaydet`;
+    let yol =environment.apiUrl + `FormYatayData/Kaydet`;
 
     let sonuc = await this.http
       .post(yol, this.FormYatayData, { ...options, responseType: 'text' })

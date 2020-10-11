@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import SoruCevapExtra from 'src/pandap-forms-module/models/SoruCevapExtra';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'gk-upload',
@@ -15,7 +15,6 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./gk-upload.component.css'],
 })
 export class GkUploadComponent implements OnInit {
-  public baseUrl: string = environment.baseUrl;
   ProgressMessage: string;
 
   @Input() dosyalar: string[];
@@ -43,7 +42,7 @@ export class GkUploadComponent implements OnInit {
 
   onFileSelected(event) {
     var selectedFile = event.target.files[0];
-    var url = this.baseUrl + 'UploadFile/yukle';
+    var url = environment.apiUrl + 'UploadFile/yukle';
 
     const fd = new FormData();
 

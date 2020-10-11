@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { jwtHelper } from 'src/common/jwtHelper';
-import { environment } from '../../environments/environment';
-import {AuthService} from 'src/common/auth.service';
+import { jwtHelper } from  '@app/_helpers/jwtHelper'
+import { environment } from '@environments/environment';
+import {AuthenticationService} from '@app/_services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -10,20 +10,16 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  public baseUrl: string= environment.baseUrl;
   AutService: any;
 
 
-  constructor(private auth:AuthService,private router: Router ) {
+  constructor(private auth:AuthenticationService,private router: Router ) {
 
   }
 
   ngOnInit()
   {
-    if(this.auth.loggedIn()==false)
-    {
-      this.router.navigateByUrl('login');
-    }
+  
   }
 
 

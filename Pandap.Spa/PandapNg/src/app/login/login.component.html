@@ -1,20 +1,7 @@
-<div class="container">
-  <div class="row">
-      <div class="col-sm-4">
-      </div>
-      <article class="col-sm-4 card">
-          <div class="form-group">
-            <label for="kullaniciId">Kullanıcı:</label>
-            <input type="text" [(ngModel)]="kullaniciModel.KullaniciID"  class="form-control" >
-          </div>
-          <div class="form-group">
-            <label for="pwd">Parola:</label>
-            <input type="password"  (change)="onParolaDegisti($event.target.value)" class="form-control" id="parola">
-          </div>
-         
-          <button type="button" (click)="onGiris()" class="btn btn-primary mb-4">Giriş</button>
-        </article>
-  
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="alert alert-info">
+      Username: test<br />
+      Password: test
   </div>
  
 </div>
