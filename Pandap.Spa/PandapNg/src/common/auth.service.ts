@@ -24,9 +24,10 @@ export class AuthService {
 
     let yol = this.baseUrl + `Kullanici/Login`;
 
-    let sonuc:Kullanici = await this.http
+    let sonuc:any = await this.http
       .post(yol, JSON.stringify(kul), { ...options})
       .toPromise();
+
 
     
     

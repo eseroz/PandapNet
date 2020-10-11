@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/common/auth.service';
 import { Kullanici } from 'src/common/Kullanici';
 
+declare let alertify:any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +15,8 @@ import { Kullanici } from 'src/common/Kullanici';
 })
 export class LoginComponent implements OnInit {
 kullaniciModel:Kullanici={};
+
+
 
   constructor(private auth:AuthService,private router: Router) { 
 
@@ -30,13 +34,28 @@ kullaniciModel:Kullanici={};
 
   async onGiris()
   {
-     let kul1=await this.auth.login( this.kullaniciModel.KullaniciID,this.kullaniciModel.Parola);
 
-    if(kul1!==null)
-    {
-      localStorage.setItem("token",kul1.Token);
-      this.router.navigateByUrl('/');
-    }
+    let hata="";
+
+     let kul1=await this.auth.login( this.kullaniciModel.KullaniciID,this.kullaniciModel.Parola)
+     .catch((x)=>
+      {
+         hata=x;
+      });
+
+     if(hata.length>0)
+     {
+      alertify.confirm('Confirm Message');
+       alertify.warning(hata);
+     
+     }
+
+
+    // if(kul1!==null)
+    // {
+    //   localStorage.setItem("token",kul1.Token);
+    //   this.router.navigateByUrl('/');
+    // }
    
   }
 }
