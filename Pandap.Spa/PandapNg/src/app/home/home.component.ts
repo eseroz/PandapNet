@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { jwtHelper } from  '@app/_helpers/jwtHelper'
+import { jwtHelper } from '@app/_helpers/jwt.helper';
 import { environment } from '@environments/environment';
-import {AuthenticationService} from '@app/_services/authentication.service';
+import { AuthenticationService } from '@app/_services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -10,18 +10,9 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  AutService: any;
+ 
 
+  constructor() {}
 
-  constructor(private auth:AuthenticationService,private router: Router ) {
-
-  }
-
-  ngOnInit()
-  {
-  
-  }
-
-
-
+  ngOnInit() {}
 }

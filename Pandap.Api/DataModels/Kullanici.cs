@@ -11,12 +11,12 @@ namespace pandap.api.DataModels
         [Key]
         public string KullaniciId { get; set; }
 
+        [JsonIgnore]
+        public string Parola { get; set; }
+
         public string KullaniciAdSoyad { get; set; }
 
         public string Mail { get; set; }
-
-        [JsonIgnore]
-        public string Parola { get; set; }
 
         public string KullaniciRol { get; set; }
 

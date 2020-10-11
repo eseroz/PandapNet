@@ -6,7 +6,7 @@ import { FormYatayDataEditComponent } from 'src/pandap-forms-module/form-yatay-d
 import { FormgunlukComponent } from 'src/pandap-forms-module/formgunluk/formgunluk.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './_helpers/authGuard';
+import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full',canActivate: [AuthGuard] },
@@ -14,11 +14,13 @@ const routes: Routes = [
   {
     path: 'pandap-forms/formliste',
     component: FormListeComponent,
+    canActivate: [AuthGuard]
   },
 
   {
     path: 'pandap-forms/formGunluk',
     component: FormgunlukComponent,
+    canActivate: [AuthGuard]
   },
 
   {

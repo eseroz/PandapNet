@@ -9,14 +9,15 @@ import { PandapFormsModule } from 'src/pandap-forms-module/PandapFormsModule';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
-import { JwtInterceptor } from './_helpers/jwtinterceptor';
-import { ErrorInterceptor } from './_helpers/ErrorIntercepter';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
