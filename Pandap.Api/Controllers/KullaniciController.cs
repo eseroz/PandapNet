@@ -46,9 +46,6 @@ namespace pandap.api.Controllers
         public ActionResult<Kullanici> Login(Kullanici kullaniciModel)
         {
 
-            //var nesne = new { hata = "sorun", kod = "8000" };
-            //return BadRequest(nesne);
-
             var kul = dc.Kullanicilar.Where(c => c.KullaniciId == kullaniciModel.KullaniciId)
                                     .Where(c => c.Parola == kullaniciModel.Parola)
                                     .FirstOrDefault();
@@ -57,10 +54,10 @@ namespace pandap.api.Controllers
             if (kul != null)
             {
                 kul.Token = GenerateJwtToken(kul);
-                return kul;
+                return Ok(kul);
             }
             else
-                return null;
+                return NotFound(new { message = "Kullanýcý Bulunamadý" });
 
         }
 
