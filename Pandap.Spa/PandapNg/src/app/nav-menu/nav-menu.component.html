@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark bd-navbar border-bottom box-shadow mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">Pandap.Net</a>
@@ -20,14 +20,8 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" (click)="logOut()" [routerLink]="['/']">Ana Sayfa</a>
-
-           
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Ana Sayfa</a>
           </li>
 
           <li
