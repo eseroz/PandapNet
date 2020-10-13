@@ -20,7 +20,11 @@
       "@app/*": ["src/app/*"],
       "@environments/*": ["src/environments/*"]
   }
-  }
+  },
 
-  
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    // "fullTemplateTypeCheck": true,
+    // "strictInjectionParameters": true
+  }
 }

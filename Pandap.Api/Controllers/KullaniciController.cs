@@ -50,7 +50,6 @@ namespace pandap.api.Controllers
                                     .Where(c => c.Parola == kullaniciModel.Parola)
                                     .FirstOrDefault();
 
-
             if (kul != null)
             {
                 kul.Token = GenerateJwtToken(kul);
