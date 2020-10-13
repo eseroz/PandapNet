@@ -25,7 +25,7 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Ana Sayfa</a>
+            <a class="nav-link text-dark" (click)="logOut()" [routerLink]="['/']">Ana Sayfa</a>
 
            
           </li>
@@ -99,7 +99,7 @@
 
 
           <li>
-            <a class="nav-item nav-link" (click)="logOut()">Log Out</a>
+            <a class="nav-item nav-link" [routerLink]="['/']" (click)="logOut()">Çıkış</a>
           </li>
      
 
