@@ -1,9 +1,14 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark bd-navbar border-bottom box-shadow mb-3"
+    class="navbar navbar-light bg-light navbar-expand-sm navbar-toggleable-sm mr-auto
+     bd-navbar border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Pandap.Net</a>
+      <img src="../../assets/Pandap_logo150.png" width="45px" />
+      <a class="navbar-brand ml-1 d-inline-block align-top" [routerLink]="['/']"
+        >Pandap.Net</a
+      >
+
       <button
         class="navbar-toggler"
         type="button"
@@ -15,15 +20,9 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Ana Sayfa</a>
-          </li>
-
+      <div class="navbar-collapse collapse" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow  mr-auto">
+        
           <li
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -56,54 +55,13 @@
               >
             </div>
           </li>
-
-          <li
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-item dropdown"
-          >
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Ebys
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a
-                [routerLink]="['/pandap-forms/formGunluk']"
-                class="dropdown-item"
-                href="#"
-                >Gelen Evrak</a
-              >
-              <div class="dropdown-divider"></div>
-              <a
-                [routerLink]="['/pandap-forms/formliste']"
-                class="dropdown-item"
-                href="#"
-                >Giden Evrak</a
-              >
-            </div>
-          </li>
-
-
-
-          <li>
-            <a class="nav-item nav-link" [routerLink]="['/']" (click)="logOut()">Çıkış</a>
-          </li>
-     
-
-
         </ul>
 
-        
+        <button  (click)="logOut()" class="btn btn-outline-danger my-2 my-sm-0">Çıkış</button>
 
-     
       </div>
     </div>
   </nav>
+
+  
 </header>
