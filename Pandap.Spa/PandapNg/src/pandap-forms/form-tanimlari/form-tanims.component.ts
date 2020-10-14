@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments/environment';
 import { FormTanim } from '../models/formTanim';
 import { Router } from '@angular/router';
 
@@ -16,15 +16,20 @@ export class FormTanimsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    var userToken=JSON.parse(localStorage.getItem("currentUser")).Token;
+
     let options = {
       headers: {
-        'Authorization':'Bearer ' + localStorage.getItem("token")
+        'Authorization':'Bearer ' + userToken
       },
     };
 
     this.FormTanims = await this.http
-      .get<FormTanim[]>(environment.apiUrl + 'FormTanim/FormlariGetir',{ ...options})
+      .get<FormTanim[]>(environment.apiUrl + '/FormTanim/FormlariGetir',{ ...options})
       .toPromise();
+
+      console.log(this.FormTanims);
+
   }
 
   edit() {

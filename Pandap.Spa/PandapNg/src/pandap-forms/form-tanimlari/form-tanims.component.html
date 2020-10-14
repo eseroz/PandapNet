@@ -12,13 +12,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let form of FormTanims">
-        <td>{{form.Id}}</td>
-        <td>{{form.FormAd}}</td>
-        <td>{{form.Periyod}}</td>
-        <td><button class="btn btn-primary" (click)="edit(form)">Sorular</button></td>
+        <td>{{ form.Id }}</td>
+        <td>{{ form.FormAd }}</td>
+        <td>{{ form.Periyod }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="edit(form)">Sorular</button>
+        </td>
       </tr>
     </tbody>
   </table>
-  
 </section>
 

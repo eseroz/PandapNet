@@ -9,6 +9,7 @@ import { PandapControlsModule } from 'src/pandap-controls/PandapControlsModule';
 import { DateFromUTCPipe } from './utils/DateFromUTCPipe';
 import { PandapFormRoutingModule } from './pandapforms.routing';
 import { LayoutComponent } from './layout.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,12 @@ import { LayoutComponent } from './layout.component';
     DateFromUTCPipe,
   ],
   imports: [
+    CommonModule,
     HttpClientModule,
     FormsModule,
     PandapControlsModule,
     PandapFormRoutingModule,
+   
   ],
   exports: [
     LayoutComponent,

@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent, LoginComponent],
@@ -23,6 +24,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     HttpClientModule,
     PandapFormsModule,
     FormsModule,
+    CommonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
