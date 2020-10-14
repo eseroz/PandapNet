@@ -6,7 +6,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import SoruCevapExtra from 'src/pandap-forms/models/SoruCevapExtra';
+import SoruCevapExtra from 'src/pandap-forms/_models/SoruCevapExtra';
 import { environment } from '@environments/environment';
 
 @Component({

@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { FormTanim } from '../models/formTanim';
+import { FormTanim } from '../_models/formTanim';
 import { Router } from '@angular/router';
+import { FormSoru } from '../_models/formSoru';
 
 @Component({
   selector: 'app-form-tanims',
@@ -11,35 +12,34 @@ import { Router } from '@angular/router';
 export class FormTanimsComponent implements OnInit {
   public FormTanims: FormTanim[];
 
-  loading:true;
+  loading: true;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-
-
-    var userToken=JSON.parse(localStorage.getItem("currentUser")).Token;
+    var userToken = JSON.parse(localStorage.getItem('currentUser')).Token;
 
     let options = {
       headers: {
-        'Authorization':'Bearer ' + userToken
+        Authorization: 'Bearer ' + userToken,
       },
     };
 
-    this.loading=true;
+    this.loading = true;
 
     this.FormTanims = await this.http
-      .get<FormTanim[]>(environment.apiUrl + '/FormTanim/FormlariGetir',{ ...options})
+      .get<FormTanim[]>(environment.apiUrl + '/FormTanim/FormlariGetir', {
+        ...options,
+      })
       .toPromise();
 
-      console.log(this.FormTanims);
-    
-
-
+    console.log(this.FormTanims);
   }
 
-  edit() {
-    this.router.navigateByUrl('pandapforms/formSorular');
+  edit(id: number) {
+    this.router.navigate(['formSorular'], {
+      queryParams: { formId: id.toString() },
+    });
   }
 
   yeniForm() {
