@@ -25,6 +25,12 @@
       <td><input type="text" [(ngModel)]="soru.VarsayilanDeger" /></td>
       <td><input type="text" [(ngModel)]="soru.Secenekler" /></td>
     </tr>
+
+    <tr *ngIf="!FormSorular">
+      <td colspan="8" class="text-center">
+        <span class="spinner-border spinner-border-lg align-center"></span>
+      </td>
+    </tr>
   </tbody>
 </table>
 </section>

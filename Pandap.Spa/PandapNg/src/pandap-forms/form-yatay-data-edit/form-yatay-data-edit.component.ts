@@ -40,8 +40,8 @@ export class FormYatayDataEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.FormAd = this.route.snapshot.paramMap.get('formAd');
-    this.FormGunlukId = this.route.snapshot.paramMap.get('formGunlukId');
+    this.FormAd = this.route.snapshot.queryParams['formAd'];
+    this.FormGunlukId = this.route.snapshot.queryParams['formGunlukId'];
 
     console.log(this.FormGunlukId);
   }
@@ -49,14 +49,14 @@ export class FormYatayDataEditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.FormSorular = await this.http
       .get<FormSoru[]>(
-        environment.apiUrl + `FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
+        environment.apiUrl + `/FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
       )
       .toPromise();
 
     this.FormYatayData = await this.http
       .get<FormYatayData>(
         environment.apiUrl +
-          `FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
+          `/FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
       )
       .toPromise();
 
@@ -93,7 +93,7 @@ export class FormYatayDataEditComponent implements OnInit {
       },
     };
 
-    let yol =environment.apiUrl + `FormYatayData/Kaydet`;
+    let yol =environment.apiUrl + `/FormYatayData/Kaydet`;
 
     let sonuc = await this.http
       .post(yol, this.FormYatayData, { ...options, responseType: 'text' })

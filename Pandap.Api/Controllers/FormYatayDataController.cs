@@ -28,7 +28,7 @@ namespace Pandap.Api.Controllers
             return sonuc;
         }
 
-        public FormYatayData FormYatayDataGetirFromId(int formGunlukId,string formAd)
+        public FormYatayData FormYatayDataGetirFromId(string formAd, int formGunlukId)
         {
             var sonuc = dc.YatayDatas.FirstOrDefault(c=>c.FormGunlukId== formGunlukId);
 

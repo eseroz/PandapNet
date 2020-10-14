@@ -18,9 +18,19 @@ export class FormSorularComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
+    
+    var userToken=JSON.parse(localStorage.getItem("currentUser")).Token;
+
+    let options = {
+      headers: {
+        'Authorization':'Bearer ' + userToken
+      },
+    };
+
     this.FormSorular = await this.http
     .get<FormSoru[]>(
-      environment.apiUrl + 'FormSoru/FormSorulariGetir?formAd=SH-Gunluk'
+      environment.apiUrl + '/FormSoru/FormSorulariGetir?formAd=SH-Gunluk',options
     )
     .toPromise();
   }

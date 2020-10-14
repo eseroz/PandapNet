@@ -15,6 +15,14 @@ const routes: Routes = [
       { path: 'formTanimlari', component: FormTanimsComponent },
       { path: 'formGunluk', component: FormgunlukComponent },
       { path: 'formSorular', component: FormSorularComponent },
+      {
+        path: 'formYatayData',
+        component: FormYatayDataEditComponent,
+      },
+      {
+        path: 'formYatayData/:formAd?/:formGunlukId?',
+        component: FormYatayDataEditComponent,
+      },
 
       
     ],

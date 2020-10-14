@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class FormTanimsComponent implements OnInit {
   public FormTanims: FormTanim[];
 
+  loading:true;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
+
 
     var userToken=JSON.parse(localStorage.getItem("currentUser")).Token;
 
@@ -24,16 +26,20 @@ export class FormTanimsComponent implements OnInit {
       },
     };
 
+    this.loading=true;
+
     this.FormTanims = await this.http
       .get<FormTanim[]>(environment.apiUrl + '/FormTanim/FormlariGetir',{ ...options})
       .toPromise();
 
       console.log(this.FormTanims);
+    
+
 
   }
 
   edit() {
-    this.router.navigateByUrl('pandap-forms/formSorular');
+    this.router.navigateByUrl('pandapforms/formSorular');
   }
 
   yeniForm() {

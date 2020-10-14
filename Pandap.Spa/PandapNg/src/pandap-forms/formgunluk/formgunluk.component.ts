@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGunluk } from '../models/formGunluk';
 import { FormYatayDataEditComponent } from '../form-yatay-data-edit/form-yatay-data-edit.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -14,19 +14,21 @@ export class FormgunlukComponent implements OnInit {
   public FormRouter: Router;
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,private route: ActivatedRoute) {
     this.FormRouter = router;
   }
 
   async ngOnInit(): Promise<void> {
     this.FormGunluks = await this.http
-      .get<FormGunluk[]>(environment.apiUrl + 'FormGunluk/BugunBakilacaklar')
+      .get<FormGunluk[]>(environment.apiUrl + '/FormGunluk/BugunBakilacaklar')
       .toPromise();
   }
 
   edit(formgunluk: FormGunluk) {
-    this.router.navigateByUrl(
-      `pandap-forms/formYatayData/${formgunluk.FormAd}/${formgunluk.Id}`
-    );
+
+  //  this.router.navigate(['pandapforms/formYatayData'], { queryParams: { formAd: formgunluk.FormAd, formGunlukId:formgunluk.Id} });
+  console.log(formgunluk);
+  this.router.navigate(['/formYatayData'], { queryParams: { formAd: formgunluk.FormAd,formGunlukId:formgunluk.Id } });
+
   }
 }

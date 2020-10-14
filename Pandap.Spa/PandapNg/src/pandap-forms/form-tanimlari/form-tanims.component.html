@@ -1,6 +1,7 @@
-<p>Kestirici form tanımları</p>
+<h4>Form Tanımları</h4>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Form Ekle</a>
 
-<section class="card">
+<div class="card">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -19,7 +20,12 @@
           <button class="btn btn-primary" (click)="edit(form)">Sorular</button>
         </td>
       </tr>
+
+      <tr *ngIf="!FormTanims">
+        <td colspan="4" class="text-center">
+          <span class="spinner-border spinner-border-lg align-center"></span>
+        </td>
+      </tr>
     </tbody>
   </table>
-</section>
-
+</div>
