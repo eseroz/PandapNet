@@ -6,7 +6,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import SoruCevapExtra from 'src/pandap-forms-module/models/SoruCevapExtra';
+import SoruCevapExtra from 'src/pandap-forms/models/SoruCevapExtra';
 import { environment } from '@environments/environment';
 
 @Component({
@@ -23,21 +23,15 @@ export class GkUploadComponent implements OnInit {
 
   ngOnInit(): void {
     // this.dosyaIsimleri=this.cevapObj.Dosyalar;
-
-  
- 
   }
 
   onDosyaSil(dosyaAd: string) {
-    
     const index: number = this.dosyalar.indexOf(dosyaAd);
     this.dosyalar.splice(index, 1);
-   
   }
 
   onDosyaYuklendi(dosyaAd: string) {
     this.dosyalar.push(dosyaAd);
-
   }
 
   onFileSelected(event) {
@@ -57,12 +51,9 @@ export class GkUploadComponent implements OnInit {
         var result = this.getEventMessage(event, selectedFile);
         this.ProgressMessage = result;
 
-        if(event.type===4)
-        {
-          this.ProgressMessage="";
+        if (event.type === 4) {
+          this.ProgressMessage = '';
         }
-      
-       
       });
   }
 

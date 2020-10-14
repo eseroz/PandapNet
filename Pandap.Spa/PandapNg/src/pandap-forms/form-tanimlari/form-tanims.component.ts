@@ -5,10 +5,10 @@ import { FormTanim } from '../models/formTanim';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-liste',
-  templateUrl: './form-liste.component.html',
+  selector: 'app-form-tanims',
+  templateUrl: './form-tanims.component.html',
 })
-export class FormListeComponent implements OnInit {
+export class FormTanimsComponent implements OnInit {
   public FormTanims: FormTanim[];
 
 
