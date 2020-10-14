@@ -36,7 +36,7 @@ export class GkUploadComponent implements OnInit {
 
   onFileSelected(event) {
     var selectedFile = event.target.files[0];
-    var url = environment.apiUrl + 'UploadFile/yukle';
+    var url = environment.apiUrl + '/UploadFile/yukle';
 
     const fd = new FormData();
 

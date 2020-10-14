@@ -47,18 +47,22 @@ export class FormYatayDataEditComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.FormSorular = await this.http
+    let sorular = await this.http
       .get<FormSoru[]>(
         environment.apiUrl + `/FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
       )
       .toPromise();
 
-    this.FormYatayData = await this.http
+    let data = await this.http
       .get<FormYatayData>(
         environment.apiUrl +
           `/FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
       )
       .toPromise();
+
+      this.FormSorular=sorular;
+    this.FormYatayData=data;
+ 
 
     this.FormYatayData.CevapEktraObj = JSON.parse(this.FormYatayData.CevapJson);
 
