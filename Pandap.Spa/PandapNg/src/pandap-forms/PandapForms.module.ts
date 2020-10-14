@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormgunlukComponent } from './form-gunluk/formgunluk.component';
 import { FormYatayDataEditComponent } from './form-yatay-data-edit/form-yatay-data-edit.component';
 import { FormsModule } from '@angular/forms';
-import { FormSorularComponent } from './form-tanimlari/form-sorular.component';
+import { FormSorularComponent } from './form-tanimlari/form-edit.component';
 import { PandapControlsModule } from 'src/pandap-controls/PandapControlsModule';
 import { DateFromUTCPipe } from './_utils/DateFromUTCPipe';
 import { PandapFormRoutingModule } from './pandapforms.routing';

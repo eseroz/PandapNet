@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormTanim } from '../_models/formTanim';
 
 @Component({
-  selector: 'app-form-sorular',
-  templateUrl: './form-sorular.component.html',
+  selector: 'app-form-edit',
+  templateUrl: './form-edit.component.html',
 })
 export class FormSorularComponent implements OnInit {
   public FormSorular: FormSoru[];
