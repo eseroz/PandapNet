@@ -19,9 +19,11 @@
         align-content: flex-start;
       "
     >
-      <div style="padding: 0; font-size: 28px">
-        KESTİRİMCİ BAKIM KONTROL FORMU
+      <div *ngIf="FormTanim" style="padding: 0; font-size: 28px; text-align: center">
+        {{FormTanim.FormAdiUzun}}
       </div>
+
+
       <button
         style="margin: 5px; width: 100px"
         class="btn btn-primary"
@@ -32,7 +34,42 @@
     </nav>
   </div>
 
-  <div *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
+
+  <section *ngIf="FormSorularMetaData" class="card mb-3">
+    <nav class="card-body">
+      <article class="form-group row">
+        <label class="col-sm-3 col-form-label">Operatör</label>
+        <div class="col-sm-9">
+          <input class="form-control-plaintext col-md-9" readonly
+          type="text"
+          class="form-control"
+          [ngModel]="FormYatayData['KullaniciId']"
+        
+        />
+        </div>
+      
+      </article>
+
+      <article class="form-group row">
+        <label class="col-sm-3 col-form-label">İşlem Tarihi</label>
+        <div class="col-sm-9">
+        <input readonly
+        type="date"
+        class="form-control"
+        [ngModel]="FormYatayData['IslemTarih'] | DateFromUTCPipe"
+      
+      />
+      </div>
+    </article>
+
+      </nav>
+ 
+
+  </section>
+
+
+
+  <section *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
     <ng-template [ngIf]="formSoru.HtmlKontrolTip == 'section-main'">
       <article class="card rounded">
         <div
@@ -223,5 +260,5 @@
         </div>
       </article>
     </ng-template>
-  </div>
+  </section>
 </main>

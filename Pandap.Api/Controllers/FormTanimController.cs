@@ -38,6 +38,14 @@ namespace Pandap.Api.Controllers
             return result;
 
         }
+
+        [HttpGet]
+        public FormTanim FormGetirByFormAd(string formAd)
+        {
+            var result = dc.FormTanims.Where(c => c.FormAd == formAd).FirstOrDefault();
+            return result;
+
+        }
     }
 
 }

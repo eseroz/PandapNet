@@ -10,7 +10,7 @@ namespace Pandap.Api.DataModels
     public class FormTanim
     {
         public int Id { get; set; }
-        public string FormAdıUzun { get; set; }
+        public string FormAdiUzun { get; set; }
         public string FormAd { get; set; }
         public string FormUstBaslik { get; set; }
         public string FormAltBaslik { get; set; }

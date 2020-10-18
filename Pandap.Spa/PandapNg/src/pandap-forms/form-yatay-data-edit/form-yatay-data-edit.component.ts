@@ -18,6 +18,7 @@ import { FormSoru } from '../_models/formSoru';
 import { ActivatedRoute, Router } from '@angular/router';
 import SoruCevapExtra from '../_models/SoruCevapExtra';
 import { chdir } from 'process';
+import { FormDataService } from '../formData.service';
 
 @Component({
   selector: 'app-form-yatay-data-edit',
@@ -28,6 +29,7 @@ export class FormYatayDataEditComponent implements OnInit {
   public FormYatayData: FormYatayData;
   public FormTanim: FormTanim;
   public FormSorular: FormSoru[];
+  public FormSorularMetaData: FormSoru[];
 
   FormAd: string;
   FormGunlukId: string;
@@ -36,29 +38,24 @@ export class FormYatayDataEditComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dataService:FormDataService
   ) {
     this.FormAd = this.route.snapshot.queryParams['formAd'];
     this.FormGunlukId = this.route.snapshot.queryParams['formGunlukId'];
 
-    console.log(this.FormGunlukId);
   }
 
-  async ngOnInit(): Promise<void> {
-    let sorular = await this.http
-      .get<FormSoru[]>(
-        environment.apiUrl + `/FormSoru/FormSorulariGetir?formAd=${this.FormAd}`
-      )
-      .toPromise();
+  async ngOnInit() {
+    let formTanim= await this.dataService.formTanimGetirFormAd(this.FormAd);
+    let sorular = await this.dataService.formSorulariGetir(this.FormAd);
+    let data =  await this.dataService.formYatayDataGetirFromId(this.FormGunlukId,this.FormAd);
+    
 
-    let data = await this.http
-      .get<FormYatayData>(
-        environment.apiUrl +
-          `/FormYatayData/FormYatayDataGetirFromId?formGunlukId=${this.FormGunlukId}&formAd=${this.FormAd}`
-      )
-      .toPromise();
+    this.FormTanim=formTanim;
 
-    this.FormSorular = sorular;
+    this.FormSorularMetaData = sorular.filter(c=>c.HtmlKontrolTip==='form-meta-data');
+    this.FormSorular = sorular.filter(c=>c.HtmlKontrolTip!=='form-meta-data');
     this.FormYatayData = data;
 
     this.FormYatayData.CevapEktraObj = JSON.parse(this.FormYatayData.CevapJson);
