@@ -18,5 +18,7 @@ namespace Pandap.Api.DataModels
         public DateTime? FormGuncellenmeTarihi { get; set; }
         public string YetkiliRoller { get; set; }
 
+        public int? BulunanProblemSayisi { get; set; }
+
     }
 }

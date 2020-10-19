@@ -9,6 +9,7 @@ KullaniciId:String
 CevapJson:string
 FormGuncellenmeTarihi:Date
 CevapEktraObj:SoruCevapExtra[]
+BulunanProblemSayisi:number
 S01:string
 S02:string
 S03:string

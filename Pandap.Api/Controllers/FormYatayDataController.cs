@@ -54,6 +54,7 @@ namespace Pandap.Api.Controllers
 
             var gunluk=dc.FormGunluks.Where(c => c.Id == model.FormGunlukId).First();
 
+            gunluk.BulunanProblemSayisi = model.BulunanProblemSayisi;
             gunluk.FormGuncellenmeTarihi = model.FormGuncellenmeTarihi;
 
 

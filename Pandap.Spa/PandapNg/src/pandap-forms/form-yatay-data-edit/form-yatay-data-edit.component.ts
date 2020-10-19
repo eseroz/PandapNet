@@ -78,11 +78,16 @@ export class FormYatayDataEditComponent implements OnInit {
       return;
     }
 
+
+    var sorunSayisi=this.sorunSayisi();
+    
+    this.FormYatayData.BulunanProblemSayisi=sorunSayisi;
+
     this.FormYatayData.CevapJson = JSON.stringify(
       this.FormYatayData.CevapEktraObj
     );
 
-    console.log(this.FormYatayData);
+    this.FormYatayData.BulunanProblemSayisi=sorunSayisi;
 
     let options = {
       headers: {
@@ -112,6 +117,36 @@ export class FormYatayDataEditComponent implements OnInit {
 
     return validationText;
   }
+
+
+  sorunSayisi() {
+    let sorunSayisi=0;
+
+    for (var soru of this.FormSorular) {
+      let soruDeger=this.FormYatayData[soru.SoruKod];
+
+      if(soruDeger==null) continue;
+
+      if (soruDeger=="UYGUN DEĞİL") {
+        sorunSayisi+=1;
+        continue;
+      }
+    
+      if(soru.MinMax!==null)
+      {
+        let min = parseFloat(soru.MinMax.split('-')[0].replace(',', '.'));
+        let max = parseFloat(soru.MinMax.split('-')[1].replace(',', '.'));
+
+        let aralikDisiMi=this.aralikDisiMi(soruDeger,min,max);
+
+        if(aralikDisiMi)  sorunSayisi+=1;
+      }
+    
+    }
+
+    return sorunSayisi;
+  }
+
 
   soruInfo() {
     this.btnSoruInfo.nativeElement.setAttribute('data-content', 'dikkat et');
@@ -144,4 +179,12 @@ export class FormYatayDataEditComponent implements OnInit {
     }
     console.log(deger, this.FormYatayData.CevapEktraObj[soruKod]);
   }
+
+
+  aralikDisiMi(deger,min,max)
+  {
+    return (deger < min || deger > max);
+     
+  }
+
 }

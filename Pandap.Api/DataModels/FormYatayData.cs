@@ -22,6 +22,7 @@ namespace Pandap.Api.DataModels
         public DateTime? FormGuncellenmeTarihi { get; set; }
         public string KullaniciId { get; set; }
 
+        public int? BulunanProblemSayisi { get; set; }
         public string CevapJson { get; set; }
 
         public string S01 { get; set; }

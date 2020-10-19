@@ -177,6 +177,8 @@
             <select
               type="text"
               class="form-control"
+              [style.color]="FormYatayData[formSoru.SoruKod]==='UYGUN DEĞİL'?'red':'black'"
+              [style.borderColor]="FormYatayData[formSoru.SoruKod]==='UYGUN DEĞİL'?'red':'lightgray'"
               [(ngModel)]="FormYatayData[formSoru.SoruKod]"
             >
               <option
