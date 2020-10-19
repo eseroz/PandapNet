@@ -3,7 +3,7 @@ export class FormGunluk {
     FormAd: string;
     FormOlusturmaTarihi: Date ;
     DoldurulmaYuzde: string;
-    FormGuncellemeTarihi: Date ;
+    FormGuncellenmeTarihi: Date ;
     YetkiliRoller: string;
   
   }

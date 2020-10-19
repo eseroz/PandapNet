@@ -4,10 +4,10 @@ export class FormYatayData {
 Id:number
 SatirGuid:string
 FormAdi:string
-MakinaKod:string
 IslemTarih:Date
 KullaniciId:String
 CevapJson:string
+FormGuncellenmeTarihi:Date
 CevapEktraObj:SoruCevapExtra[]
 S01:string
 S02:string

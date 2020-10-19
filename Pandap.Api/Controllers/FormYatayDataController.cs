@@ -50,6 +50,12 @@ namespace Pandap.Api.Controllers
         [HttpPost]
        public string Kaydet(FormYatayData model)
         {
+            model.FormGuncellenmeTarihi = DateTime.Now;
+
+            var gunluk=dc.FormGunluks.Where(c => c.Id == model.FormGunlukId).First();
+
+            gunluk.FormGuncellenmeTarihi = model.FormGuncellenmeTarihi;
+
 
             dc.YatayDatas.Update(model);
 

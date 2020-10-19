@@ -1,13 +1,29 @@
 
-<nav class="alert alert-primary" style="">
-  <h5>Bugün doldurulacak formlar</h5>
-  
-  <div class="progress" style="width: 100%;height: 15px;">
-    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"
-    >85%</div>
-  </div>
-  
-</nav>
+<section class="card">
+  <nav class="card-body">
+    <article class="form-group row">
+      <label class="col-sm-3 col-form-label">Form Tarihi</label>
+      <div class="col-sm-3">
+      <input 
+      type="date"
+      class="form-control"
+      [(ngModel)]="aktifTarih"
+    
+    />
+    </div>
+  </article>
+
+
+    <div class="progress" style="width: 100%;height: 15px;">
+      <div class="progress-bar bg-success" role="progressbar"  [style.width]="DoldurulmaYuzde+'%'"
+      >{{DoldurulmaYuzde}}%</div>
+    </div>
+
+
+    </nav>
+</section>
+
+
 
 
 <section class="card">
@@ -19,7 +35,7 @@
         <th>Form Tarihi</th>
 
         <th>Yetkili Roller</th>
-        <th>Doldurma %</th>
+        <th>Doldurulma Tar.</th>
         <th>#</th>
       </tr>
     </thead>
@@ -30,20 +46,19 @@
         <td>{{ form.FormOlusturmaTarihi | date: "dd/MM/yyyy" }}</td>
 
         <td>{{ form.YetkiliRoller }}</td>
-        <td>
-          <div class="progress" style="width: 100px;height: 30px;">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 65%"
-            >
-              65%
-            </div>
-          </div>
-        </td>
+        <td>{{ form.FormGuncellenmeTarihi | date: "dd/MM/yyyy HH:mm" }}</td>
 
         <td>
-          <button class="btn btn-primary" (click)="edit(form)">Başla</button>
+
+          <ng-template [ngIf]="form.FormGuncellenmeTarihi">
+            <button style="width: 90px;" class="btn btn-success" (click)="edit(form)">Düzenle</button>
+          </ng-template>
+
+          <ng-template [ngIf]="!form.FormGuncellenmeTarihi">
+            <button style="width: 90px;" class="btn btn-danger" (click)="edit(form)">Başla</button>
+          </ng-template>
+      
+
         </td>
       </tr>
     </tbody>

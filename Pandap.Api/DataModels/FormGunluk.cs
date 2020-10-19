@@ -15,7 +15,7 @@ namespace Pandap.Api.DataModels
         public string FormAd { get; set; }
         public DateTime? FormOlusturmaTarihi { get; set; }
         public string DoldurulmaYuzde { get; set; }
-        public DateTime? FormGuncellemeTarihi { get; set; }
+        public DateTime? FormGuncellenmeTarihi { get; set; }
         public string YetkiliRoller { get; set; }
 
     }

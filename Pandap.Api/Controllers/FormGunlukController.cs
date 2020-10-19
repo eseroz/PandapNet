@@ -30,5 +30,16 @@ namespace Pandap.Api.Controllers
 
         }
 
+        public List<FormGunluk> FormGunlukGetirTarihten(DateTime tarih)
+        {
+            var liste = dc.FormGunluks
+                .Where(c=>c.FormOlusturmaTarihi== tarih)
+                .ToList();
+            return liste;
+
+        }
+
+ 
+
     }
 }

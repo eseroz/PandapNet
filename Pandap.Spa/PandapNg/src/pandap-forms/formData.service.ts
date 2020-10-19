@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { FormGunluk } from './_models/formGunluk';
 import { FormSoru } from './_models/formSoru';
 import { FormTanim } from './_models/formTanim';
 import { FormYatayData } from './_models/formYatayData';
@@ -31,6 +32,19 @@ export class FormDataService {
       return data;
 
   }
+
+  async formGunlukGetirTarihten(tarih:string) {
+    let data = await this.http
+    .get<FormGunluk[]>(`${environment.apiUrl}/FormGunluk/FormGunlukGetirTarihten?tarih=${tarih}`)
+    .toPromise();
+
+    return data;
+
+  }
+
+  
+
+
 
   async formTanimGetirFormAd(formAd:string) {
     

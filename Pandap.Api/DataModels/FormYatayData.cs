@@ -16,8 +16,10 @@ namespace Pandap.Api.DataModels
         public int FormGunlukId { get; set; }
         public Guid SatirGuid { get; set; }
         public string FormAdi { get; set; }
-        public string MakinaKod { get; set; }
+    
         public DateTime IslemTarih { get; set; }
+
+        public DateTime? FormGuncellenmeTarihi { get; set; }
         public string KullaniciId { get; set; }
 
         public string CevapJson { get; set; }
