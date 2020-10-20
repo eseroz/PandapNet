@@ -61,10 +61,16 @@ export class FormgunlukComponent implements OnInit {
 
 
   edit(formgunluk: FormGunluk) {
- 
-    console.log(formgunluk);
+
     this.router.navigate(['/formYatayData'], {
-      queryParams: { formAd: formgunluk.FormAd, formGunlukId: formgunluk.Id },
+      queryParams: { formAd: formgunluk.FormAd, formGunlukId: formgunluk.Id,sadeceSorunluSorular:false },
+    });
+  }
+
+  sorunluSorulariGoster(formgunluk: FormGunluk) {
+
+    this.router.navigate(['/formYatayData'], {
+      queryParams: { formAd: formgunluk.FormAd, formGunlukId: formgunluk.Id,sadeceSorunluSorular:true },
     });
   }
 }

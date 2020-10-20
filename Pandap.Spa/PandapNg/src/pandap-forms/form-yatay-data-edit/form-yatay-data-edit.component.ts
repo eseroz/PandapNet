@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormYatayData } from '../_models/formYatayData';
 import {
   HttpClient,
@@ -17,7 +17,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { FormSoru } from '../_models/formSoru';
 import { ActivatedRoute, Router } from '@angular/router';
 import SoruCevapExtra from '../_models/SoruCevapExtra';
-import { chdir } from 'process';
+import { chdir, on } from 'process';
 import { FormDataService } from '../formData.service';
 
 @Component({
@@ -35,6 +35,8 @@ export class FormYatayDataEditComponent implements OnInit {
   FormGunlukId: string;
   @ViewChild('btnSoruInfo') btnSoruInfo;
 
+  sorunluMu:any;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -43,14 +45,31 @@ export class FormYatayDataEditComponent implements OnInit {
   ) {
     this.FormAd = this.route.snapshot.queryParams['formAd'];
     this.FormGunlukId = this.route.snapshot.queryParams['formGunlukId'];
+  
+    this.sorunluMu=this.route.snapshot.queryParams['sadeceSorunluSorular'];
 
   }
 
+  
+  private _SadeceSorunlularGosterilsinMi : boolean;
+  public get SadeceSorunlularGosterilsinMi() : boolean {
+    return this._SadeceSorunlularGosterilsinMi;
+  }
+  public set SadeceSorunlularGosterilsinMi(v : boolean) {
+    this._SadeceSorunlularGosterilsinMi = v;
+  }
+  
+
+
   async ngOnInit() {
+
+
+
     let formTanim= await this.dataService.formTanimGetirFormAd(this.FormAd);
     let sorular = await this.dataService.formSorulariGetir(this.FormAd);
     let data =  await this.dataService.formYatayDataGetirFromId(this.FormGunlukId,this.FormAd);
     
+
 
     this.FormTanim=formTanim;
 
@@ -69,7 +88,14 @@ export class FormYatayDataEditComponent implements OnInit {
         extraObj[propName] = { Aciklama: '', Dosyalar: [] };
       }
     }
-  }
+    
+    var sorunSayisi=this.sorunDurumGuncelle();
+    var isTrueSet = (this.sorunluMu === 'true');
+
+    if(isTrueSet===false) isTrueSet=null;
+    this.SadeceSorunlularGosterilsinMi=isTrueSet;
+
+    }
   async kaydet() {
     let validationText = this.isFormValid();
 
@@ -79,7 +105,7 @@ export class FormYatayDataEditComponent implements OnInit {
     }
 
 
-    var sorunSayisi=this.sorunSayisi();
+    var sorunSayisi=this.sorunDurumGuncelle();
     
     this.FormYatayData.BulunanProblemSayisi=sorunSayisi;
 
@@ -119,17 +145,23 @@ export class FormYatayDataEditComponent implements OnInit {
   }
 
 
-  sorunSayisi() {
+  sorunDurumGuncelle() {
+ 
     let sorunSayisi=0;
 
     for (var soru of this.FormSorular) {
+
+      if(soru.SoruKod==null) continue; // section bölümü
+      this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=false;
+
+
       let soruDeger=this.FormYatayData[soru.SoruKod];
 
       if(soruDeger==null) continue;
 
       if (soruDeger=="UYGUN DEĞİL") {
+        this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=true;
         sorunSayisi+=1;
-        continue;
       }
     
       if(soru.MinMax!==null)
@@ -139,7 +171,12 @@ export class FormYatayDataEditComponent implements OnInit {
 
         let aralikDisiMi=this.aralikDisiMi(soruDeger,min,max);
 
-        if(aralikDisiMi)  sorunSayisi+=1;
+        if(aralikDisiMi) {
+          this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=true;
+          sorunSayisi+=1;
+
+        } 
+        
       }
     
     }

@@ -9,6 +9,14 @@
         >Pandap.Net</a
       >
 
+      <a class="navbar-brand ml-1 d-inline-block align-top" style="width: 250px;cursor: pointer; "
+          [routerLink]="['pandapforms/formGunluk']"
+          >
+          <span class="fa fa-stethoscope" style="color:orangered;font-weight: bold;"></span>
+          Kestirimci Bakım
+      </a>
+ 
+
       <button
         class="navbar-toggler"
         type="button"
@@ -22,41 +30,8 @@
       </button>
       <div class="navbar-collapse collapse" [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow  mr-auto">
-        
-          <li
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-item dropdown"
-          >
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Kestirici Bakım
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a
-                [routerLink]="['pandapforms/formGunluk']"
-                class="dropdown-item"
-                href="#"
-                >Bugün Bakılacaklar</a
-              >
-              <div class="dropdown-divider"></div>
 
-              <a
-              [routerLink]="['pandapforms/formTanimlari']"
-              class="dropdown-item"
-              href="#"
-              >Form Tanmları</a
-            >
-            
-            </div>
-          </li>
+     
         </ul>
 
         <button  (click)="logOut()" class="btn btn-outline-danger my-2 my-sm-0">Çıkış</button>

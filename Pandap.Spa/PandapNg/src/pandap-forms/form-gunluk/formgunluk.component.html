@@ -70,7 +70,11 @@
 
         <td>
           <ng-template [ngIf]="form?.BulunanProblemSayisi>0">
-            <span class="badge badge-pill badge-danger">{{ form.BulunanProblemSayisi }}</span>
+           
+
+            <button type="button" class="btn btn-danger" (click)="sorunluSorulariGoster(form)">
+              <span class="badge badge-light">{{ form.BulunanProblemSayisi }}</span>
+            </button>
           </ng-template>
 
           <ng-template [ngIf]="form?.BulunanProblemSayisi==0">
