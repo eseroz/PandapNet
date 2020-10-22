@@ -44,6 +44,8 @@ export class FormgunlukComponent implements OnInit {
     let bugun=new Date();
     this.aktifTarih= bugun.toISOString().split("T")[0];
 
+    console.log(bugun.toISOString());
+
     this.yukle();
    
   }

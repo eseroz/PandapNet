@@ -20,5 +20,8 @@ namespace Pandap.Api.DataModels
 
         public int? BulunanProblemSayisi { get; set; }
 
+
+        public FormYatayData YatayData { get; set; }
+        public string OperatorAdSoyad { get;  set; }
     }
 }

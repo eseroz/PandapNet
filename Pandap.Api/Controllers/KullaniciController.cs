@@ -17,7 +17,7 @@ using pandap.api.DataModels;
 
 namespace pandap.api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class KullaniciController : ControllerBase
