@@ -42,7 +42,7 @@ export class FormgunlukComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     let bugun=new Date();
-    this.aktifTarih= bugun.toISOString().split("T")[0];
+    this._aktifTarih= bugun.toISOString().split("T")[0];
 
     console.log(bugun.toISOString());
 
