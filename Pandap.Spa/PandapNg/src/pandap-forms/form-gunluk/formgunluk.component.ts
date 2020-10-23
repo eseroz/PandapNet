@@ -5,6 +5,7 @@ import { FormYatayDataEditComponent } from '../form-yatay-data-edit/form-yatay-d
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { FormDataService } from '../formData.service';
+import { FormTanim } from '../_models/formTanim';
 
 @Component({
   selector: 'app-formgunluk',
@@ -12,6 +13,7 @@ import { FormDataService } from '../formData.service';
 })
 export class FormgunlukComponent implements OnInit {
   public FormGunluks: FormGunluk[];
+  public FormHaftalikTanims: FormTanim[]=[];
   public FormRouter: Router;
 
   public DoldurulmaYuzde:number;
@@ -52,7 +54,12 @@ export class FormgunlukComponent implements OnInit {
 
   async yukle()
   {
+    
+    let formTanimlari= await this.dataService.formTanimListeGetir();
+    this.FormHaftalikTanims=formTanimlari.filter(c=>c.FormAd.includes("Hafta"));
+   
     this.FormGunluks = await this.dataService.formGunlukGetirTarihten(this.aktifTarih);
+
 
     let doldurulan_formSayisi=this.FormGunluks.filter(c=>c.FormGuncellenmeTarihi===null);
     let gunluk_formSayisi=this.FormGunluks.length;
@@ -60,7 +67,12 @@ export class FormgunlukComponent implements OnInit {
     this.DoldurulmaYuzde=100-(doldurulan_formSayisi.length/gunluk_formSayisi)*100;
   }
 
+  async OzelFormEkle(formAd)
+  {
+    var form=await this.dataService.formOlusturTarihten(this.aktifTarih,formAd);
+    this.FormGunluks.push(form);
 
+  }
 
   edit(formgunluk: FormGunluk) {
 
