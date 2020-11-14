@@ -1,7 +1,8 @@
 
-using Newtonsoft.Json;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace pandap.api.DataModels
 {
@@ -10,6 +11,7 @@ namespace pandap.api.DataModels
     {
         [Key]
         public string KullaniciId { get; set; }
+
 
         [JsonIgnore]
         public string Parola { get; set; }
