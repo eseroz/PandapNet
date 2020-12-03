@@ -35,46 +35,54 @@ export class FormYatayDataEditComponent implements OnInit {
   FormGunlukId: string;
   @ViewChild('btnSoruInfo') btnSoruInfo;
 
-  sorunluMu:any;
+  sorunluMu: any;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private dataService:FormDataService
+    private dataService: FormDataService
   ) {
     this.FormAd = this.route.snapshot.queryParams['formAd'];
     this.FormGunlukId = this.route.snapshot.queryParams['formGunlukId'];
-  
-    this.sorunluMu=this.route.snapshot.queryParams['sadeceSorunluSorular'];
 
+    this.sorunluMu = this.route.snapshot.queryParams['sadeceSorunluSorular'];
   }
 
-  
-  private _SadeceSorunlularGosterilsinMi : boolean;
-  public get SadeceSorunlularGosterilsinMi() : boolean {
+  private _SadeceSorunlularGosterilsinMi: boolean;
+  public get SadeceSorunlularGosterilsinMi(): boolean {
     return this._SadeceSorunlularGosterilsinMi;
   }
-  public set SadeceSorunlularGosterilsinMi(v : boolean) {
+  public set SadeceSorunlularGosterilsinMi(v: boolean) {
     this._SadeceSorunlularGosterilsinMi = v;
   }
-  
-
 
   async ngOnInit() {
-
-
-
-    let formTanim= await this.dataService.formTanimGetirFormAd(this.FormAd);
+    let formTanim = await this.dataService.formTanimGetirFormAd(this.FormAd);
     let sorular = await this.dataService.formSorulariGetir(this.FormAd);
-    let data =  await this.dataService.formYatayDataGetirFromId(this.FormGunlukId,this.FormAd);
-    
+    let data = await this.dataService.formYatayDataGetirFromId(
+      this.FormGunlukId,
+      this.FormAd
+    );
 
+    this.FormTanim = formTanim;
 
-    this.FormTanim=formTanim;
+    this.FormSorularMetaData = sorular.filter(
+      (c) => c.HtmlKontrolTip === 'form-meta-data'
+    );
+    this.FormSorular = sorular.filter(
+      (c) => c.HtmlKontrolTip !== 'form-meta-data'
+    );
 
-    this.FormSorularMetaData = sorular.filter(c=>c.HtmlKontrolTip==='form-meta-data');
-    this.FormSorular = sorular.filter(c=>c.HtmlKontrolTip!=='form-meta-data');
+    let gruplar = this.FormSorular.map((c) => {
+      return {
+        Key: c.Id,
+        Value: { SoruKod: c.SoruKod, HtmlTip: c.HtmlKontrolTip },
+      };
+    });
+
+    console.log(gruplar);
+
     this.FormYatayData = data;
 
     this.FormYatayData.CevapEktraObj = JSON.parse(this.FormYatayData.CevapJson);
@@ -88,14 +96,13 @@ export class FormYatayDataEditComponent implements OnInit {
         extraObj[propName] = { Aciklama: '', Dosyalar: [] };
       }
     }
-    
-    var sorunSayisi=this.sorunDurumGuncelle();
-    var isTrueSet = (this.sorunluMu === 'true');
 
-    if(isTrueSet===false) isTrueSet=null;
-    this.SadeceSorunlularGosterilsinMi=isTrueSet;
+    var sorunSayisi = this.sorunDurumGuncelle();
+    var isTrueSet = this.sorunluMu === 'true';
 
-    }
+    if (isTrueSet === false) isTrueSet = null;
+    this.SadeceSorunlularGosterilsinMi = isTrueSet;
+  }
   async kaydet() {
     let validationText = this.isFormValid();
 
@@ -104,16 +111,15 @@ export class FormYatayDataEditComponent implements OnInit {
       return;
     }
 
+    var sorunSayisi = this.sorunDurumGuncelle();
 
-    var sorunSayisi=this.sorunDurumGuncelle();
-    
-    this.FormYatayData.BulunanProblemSayisi=sorunSayisi;
+    this.FormYatayData.BulunanProblemSayisi = sorunSayisi;
 
     this.FormYatayData.CevapJson = JSON.stringify(
       this.FormYatayData.CevapEktraObj
     );
 
-    this.FormYatayData.BulunanProblemSayisi=sorunSayisi;
+    this.FormYatayData.BulunanProblemSayisi = sorunSayisi;
 
     let options = {
       headers: {
@@ -144,46 +150,37 @@ export class FormYatayDataEditComponent implements OnInit {
     return validationText;
   }
 
-
   sorunDurumGuncelle() {
- 
-    let sorunSayisi=0;
+    let sorunSayisi = 0;
 
     for (var soru of this.FormSorular) {
+      if (soru.SoruKod == null) continue; // section bölümü
+      this.FormYatayData.CevapEktraObj[soru.SoruKod]['SorunluMu'] = false;
 
-      if(soru.SoruKod==null) continue; // section bölümü
-      this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=false;
+      let soruDeger = this.FormYatayData[soru.SoruKod];
 
+      if (soruDeger == null) continue;
 
-      let soruDeger=this.FormYatayData[soru.SoruKod];
-
-      if(soruDeger==null) continue;
-
-      if (soruDeger=="UYGUN DEĞİL") {
-        this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=true;
-        sorunSayisi+=1;
+      if (soruDeger == 'UYGUN DEĞİL') {
+        this.FormYatayData.CevapEktraObj[soru.SoruKod]['SorunluMu'] = true;
+        sorunSayisi += 1;
       }
-    
-      if(soru.MinMax!==null)
-      {
+
+      if (soru.MinMax !== null) {
         let min = parseFloat(soru.MinMax.split('-')[0].replace(',', '.'));
         let max = parseFloat(soru.MinMax.split('-')[1].replace(',', '.'));
 
-        let aralikDisiMi=this.aralikDisiMi(soruDeger,min,max);
+        let aralikDisiMi = this.aralikDisiMi(soruDeger, min, max);
 
-        if(aralikDisiMi) {
-          this.FormYatayData.CevapEktraObj[soru.SoruKod]["SorunluMu"]=true;
-          sorunSayisi+=1;
-
-        } 
-        
+        if (aralikDisiMi) {
+          this.FormYatayData.CevapEktraObj[soru.SoruKod]['SorunluMu'] = true;
+          sorunSayisi += 1;
+        }
       }
-    
     }
 
     return sorunSayisi;
   }
-
 
   soruInfo() {
     this.btnSoruInfo.nativeElement.setAttribute('data-content', 'dikkat et');
@@ -217,11 +214,7 @@ export class FormYatayDataEditComponent implements OnInit {
     console.log(deger, this.FormYatayData.CevapEktraObj[soruKod]);
   }
 
-
-  aralikDisiMi(deger,min,max)
-  {
-    return (deger < min || deger > max);
-     
+  aralikDisiMi(deger, min, max) {
+    return deger < min || deger > max;
   }
-
 }

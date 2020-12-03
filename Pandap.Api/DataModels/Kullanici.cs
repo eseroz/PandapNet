@@ -13,7 +13,7 @@ namespace pandap.api.DataModels
         public string KullaniciId { get; set; }
 
 
-        [JsonIgnore]
+     
         public string Parola { get; set; }
 
         public string KullaniciAdSoyad { get; set; }
