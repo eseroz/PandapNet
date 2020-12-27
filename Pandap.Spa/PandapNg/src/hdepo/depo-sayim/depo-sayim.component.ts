@@ -19,6 +19,11 @@ export class DepoSayimComponent implements OnInit {
 
   barkodOku=()=>
   {
+
+    if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+      alert("yetki");
+    }
+
     Quagga.init({
       inputStream: {
         constraints: {
