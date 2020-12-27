@@ -71,9 +71,6 @@
 
 
   <section *ngFor="let formSoru of FormSorular; let i = index" class="form-group">
-
-    {{formSoru | json}}
-
     <div *ngIf="FormYatayData.CevapEktraObj[formSoru.SoruKod]?.SorunluMu===SadeceSorunlularGosterilsinMi 
     || SadeceSorunlularGosterilsinMi===null">
       
