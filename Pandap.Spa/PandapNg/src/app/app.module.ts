@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CommonModule } from '@angular/common';
+import { HDepoModule } from 'src/hdepo/hdepo.module';
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent, LoginComponent],
@@ -23,8 +24,9 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
     PandapFormsModule,
+    HDepoModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

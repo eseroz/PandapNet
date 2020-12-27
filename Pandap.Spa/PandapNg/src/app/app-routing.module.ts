@@ -9,6 +9,12 @@ const pandapFormModule = () =>
     (x) => x.PandapFormsModule
   );
 
+const hdepoFormModule = () =>
+  import('src/hdepo/hdepo.module').then(
+    (x) => x.HDepoModule
+  );
+
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +24,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'pandapforms', loadChildren: pandapFormModule },
+  { path: 'hdepo', loadChildren: hdepoFormModule },
 ];
 
 @NgModule({
