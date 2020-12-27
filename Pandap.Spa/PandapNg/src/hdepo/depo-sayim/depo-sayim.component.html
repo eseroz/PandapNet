@@ -1,1 +1,36 @@
-<p>depo-sayim works!</p>
+<p>Barkod Okutulmuş Onaylı Stoklar</p>
+
+<div id="interactive" class="viewport">
+ 
+</div>
+
+<div class="mt-2 mb-2">
+  <div class="row">
+    <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="Barkod No" />
+    </div>
+    <div class="col-md-2">
+      <button type="button" (click)="barkodOku()" class="btn btn-primary">Barkod Okut</button>
+    </div>
+  </div>
+</div>
+<section class="card">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Stok Kod</th>
+        <th>Stok Ad</th>
+        <th>Ölçü Birimi</th>
+        <th>Miktar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stok of StokListe">
+        <td>{{ stok.STOK_KODU }}</td>
+        <td>{{ stok.STOKADI_TR }}</td>
+        <td>{{ stok.OLCU_BR1 }}</td>
+        <td>{{ stok.Miktar }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
+import { environment } from 'src/environments/environment';
 import { STOKTANIM } from './_models/STOKTANIM';
-import { Observable, of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,8 @@ import { Observable, of } from 'rxjs';
 
 export class HdepoService {
   constructor(private http: HttpClient) {}
-
-  async depoSayimListeGetir() {
+  
+  public async depoSayimListeGetir() {
     let data = await this.http
       .get<STOKTANIM[]>(
         environment.apiUrl + `/StokTanim/StokTanimBarkodOkutulanListeGetir`

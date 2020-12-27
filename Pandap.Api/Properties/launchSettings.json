@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "workingDirectory": "index.html",
-      "launchUrl": "Kullanici",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
