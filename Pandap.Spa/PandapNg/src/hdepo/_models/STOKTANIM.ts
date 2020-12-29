@@ -10,4 +10,6 @@ export class STOKTANIM {
   KOD5_AD: string;
   GRUP_KODU: string;
   Miktar: number;
+  GuncellemeTarihi: string;
+  Dosyalar:string;
 }

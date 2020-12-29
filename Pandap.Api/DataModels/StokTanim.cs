@@ -26,5 +26,7 @@ namespace Pandap.Api.DataModels
 
         public decimal? Miktar { get; set; }
 
+        public DateTime? GuncellemeTarihi { get; set; }
+
     }
 }
