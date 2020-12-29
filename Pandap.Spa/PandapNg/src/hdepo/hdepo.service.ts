@@ -19,4 +19,17 @@ export class HdepoService {
       .toPromise();
     return data;
   }
+
+
+
+  public async  StokTanimBul(stokKod:string) {
+    let data = await this.http
+      .get<STOKTANIM>(
+        environment.apiUrl + `/StokTanim/StokTanimBul?stokKod=${stokKod}` 
+      )
+      .toPromise();
+    return data;
+      }
+
+
 }

@@ -36,5 +36,14 @@ namespace Pandap.Api.Controllers
             return Ok(liste);
         }
 
+        public async Task<ActionResult<STOKTANIM>> StokTanimBul(string stokKod)
+        {
+            var stok = await this._dc.StokTanims
+                .Where(c => c.STOK_KODU == stokKod)
+                .FirstOrDefaultAsync();
+
+            return Ok(stok);
+        }
+
     }
 }
