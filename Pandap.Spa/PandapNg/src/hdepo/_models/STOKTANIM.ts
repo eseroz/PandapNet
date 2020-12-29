@@ -11,5 +11,6 @@ export class STOKTANIM {
   GRUP_KODU: string;
   Miktar: number;
   GuncellemeTarihi: string;
-  Dosyalar:string;
+  DosyaListesiJson:string;
+  DosyaListesi:string[];
 }

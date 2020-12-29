@@ -31,6 +31,8 @@ export class HdepoService {
   
   public  StokTanimGuncelle(stok: STOKTANIM) {
 
+    stok.DosyaListesiJson=JSON.stringify(stok.DosyaListesi);
+    
     var jsonStok=JSON.stringify(stok);
 
     let yol= environment.apiUrl + `/StokTanim/StokTanimGuncelle`;

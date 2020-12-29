@@ -54,6 +54,7 @@ namespace Pandap.Api.Controllers
                 .FirstOrDefault();
 
             stok.Miktar = stokTanim.Miktar;
+            stok.DosyaListesiJson = stokTanim.DosyaListesiJson;
             stok.GuncellemeTarihi = DateTime.Now;
             _dc.SaveChanges();
 

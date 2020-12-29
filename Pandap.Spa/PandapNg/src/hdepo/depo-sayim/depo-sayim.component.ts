@@ -1,3 +1,4 @@
+import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComplexInnerSubscriber } from 'rxjs/internal/innerSubscribe';
@@ -31,10 +32,16 @@ export class DepoSayimComponent implements OnInit {
   async barkodAra(searchValue: string) {
     if (searchValue.length > 3) {
       let stok = await this.dataService.StokTanimBul(searchValue);
-      console.log(stok);
+     
 
       if (stok !== null) {
         this.Stok = stok;
+
+        if(this.Stok.DosyaListesiJson!==null)
+            this.Stok.DosyaListesi= JSON.parse(this.Stok.DosyaListesiJson);
+        else
+          this.Stok.DosyaListesi=[];
+        
         await this.openModal();
       }
     }
@@ -53,7 +60,16 @@ export class DepoSayimComponent implements OnInit {
 
           let sonuc = this.dataService.StokTanimGuncelle(this.Stok);
 
-          this.StokListe.push(this.Stok);
+          let listedeVarMi=this.StokListe.filter(c=>c.STOK_KODU==this.Stok.STOK_KODU);
+
+          if(listedeVarMi.length==0)
+          {
+            this.StokListe.push(this.Stok);
+          } 
+          else
+          {
+            listedeVarMi[0].Miktar=this.Stok.Miktar;
+          }
 
           this.txtSearchRef.nativeElement.value = '';
         },
