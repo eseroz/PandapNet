@@ -1,1 +1,59 @@
-<p>depo-sayim works!</p>
+<p>Barkod Okutulmuş Onaylı Stoklar</p>
+
+<div class="mt-2 mb-2">
+  <div class="row">
+    <div class="col-md-3">
+      <input
+        type="text"
+        class="form-control"
+        (input)="barkodAra($event.target.value)"
+        placeholder="Barkod No"
+      />
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<section class="card">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Stok Kod</th>
+        <th>Stok Ad</th>
+        <th>Ölçü Birimi</th>
+        <th>Miktar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stok of StokListe">
+        <td>{{ stok.STOK_KODU }}</td>
+        <td>{{ stok.STOKADI_TR }}</td>
+        <td>{{ stok.OLCU_BR1 }}</td>
+        <td>{{ stok.Miktar }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  
+</section>
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Stok Bulundu</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Stok Ad : {{Stok.STOKADI_TR}}</p>
+    <p>Stok Mikarı :</p>
+    <p>Resim :</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Tamam</button>
+  </div>
+</ng-template>
