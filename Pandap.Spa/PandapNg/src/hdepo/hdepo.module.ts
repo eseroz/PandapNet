@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DepoSayimComponent } from './depo-sayim/depo-sayim.component';
+import { PandapControlsModule } from 'src/pandap-controls/PandapControlsModule';
+import { GkUploadComponent } from 'src/pandap-controls/gk-upload/gk-upload.component';
 
 
 
@@ -18,7 +20,8 @@ import { DepoSayimComponent } from './depo-sayim/depo-sayim.component';
     HDepoRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    PandapControlsModule
   ]
 })
 export class HDepoModule { }
