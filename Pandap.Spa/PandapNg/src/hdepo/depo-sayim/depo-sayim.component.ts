@@ -1,5 +1,6 @@
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComplexInnerSubscriber } from 'rxjs/internal/innerSubscribe';
 import { DateFromUTCPipe } from 'src/pandap-forms/_utils/DateFromUTCPipe';
@@ -18,6 +19,9 @@ export class DepoSayimComponent implements OnInit {
   Stok: STOKTANIM = null;
   StokListe: STOKTANIM[] = [];
   closeResult: string;
+  GuncellenenKayitSayisi: number;
+  ToplamKayitSayisi: number;
+  DoldurulmaYuzde:number;
 
   constructor(
     public dataService: HdepoService,
@@ -44,43 +48,40 @@ export class DepoSayimComponent implements OnInit {
     }
   }
 
-  openModal() {
+  async openModal() {
     let content = this.myDivElementRef;
 
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult = `Kapatıldı: ${result}`;
+    let result = await this.modalFormPromise(content);
 
-          console.log('yeni seçili stok', this.Stok);
+    let sonuc = this.dataService.StokTanimGuncelle(this.Stok);
 
-          let sonuc = this.dataService.StokTanimGuncelle(this.Stok);
+    let seciliStok = this.StokListe.find(
+      (c) => c.STOK_KODU == this.Stok.STOK_KODU
+    );
 
-          let seciliStok = this.StokListe.find(
-            (c) => c.STOK_KODU == this.Stok.STOK_KODU
-          );
+    if (seciliStok === undefined) {
+      this.Stok.SayimGuncellemeTarihi = new Date().toUTCString();
+      this.StokListe.unshift(this.Stok);
+    } else {
+      seciliStok.SayimMiktar = this.Stok.SayimMiktar;
+      seciliStok.DosyaListesi = this.Stok.DosyaListesi;
+    }
 
-          if (seciliStok === undefined) {
-            this.Stok.GuncellemeTarihi = new Date().toUTCString();
+    this.txtSearchRef.nativeElement.value = '';
 
-            console.log(this.Stok);
+    let sonucGuncelDurum =await this.dataService.GuncellemeDurumuSayilariGetir();
+    this.GuncellenenKayitSayisi = sonucGuncelDurum[0];
+    this.ToplamKayitSayisi = sonucGuncelDurum[1];
+  }
 
-            this.StokListe.push(this.Stok);
-          } else {
-            seciliStok.Miktar = this.Stok.Miktar;
-            seciliStok.DosyaListesi = this.Stok.DosyaListesi;
-          }
+  modalFormPromise(content) {
+    return this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+    }).result;
+  }
 
-          this.txtSearchRef.nativeElement.value = '';
-        },
-        (reason) => {
-          console.log('reddedildi');
-          this.closeResult = `İptal ${this.getDismissReason(reason)}`;
-
-          this.txtSearchRef.nativeElement.value = '';
-        }
-      );
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async EkranYenile() {
@@ -90,6 +91,20 @@ export class DepoSayimComponent implements OnInit {
       x.DosyaListesi = JSON.parse(x.DosyaListesiJson);
       x.ResimSayisi = x.DosyaListesi.length;
     });
+
+    let sonucGuncelDurum = await this.dataService.GuncellemeDurumuSayilariGetir();
+    this.GuncellenenKayitSayisi = sonucGuncelDurum[0];
+    this.ToplamKayitSayisi = sonucGuncelDurum[1];
+
+    console.log(this.GuncellenenKayitSayisi,this.ToplamKayitSayisi);
+
+    var yuzde= (this.GuncellenenKayitSayisi/this.ToplamKayitSayisi)*100;
+
+
+    console.log(this.GuncellenenKayitSayisi,this.ToplamKayitSayisi,yuzde);
+
+    this.DoldurulmaYuzde=yuzde;
+
   }
 
   private getDismissReason(reason: any): string {

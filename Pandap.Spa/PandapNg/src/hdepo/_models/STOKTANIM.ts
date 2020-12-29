@@ -9,8 +9,9 @@ export class STOKTANIM {
   KOD4_AD: string;
   KOD5_AD: string;
   GRUP_KODU: string;
-  Miktar: number;
-  GuncellemeTarihi: string;
+  
+  SayimMiktar: number;
+  SayimGuncellemeTarihi: string;
   DosyaListesiJson:string;
   DosyaListesi:string[];
 

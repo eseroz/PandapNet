@@ -13,7 +13,7 @@ public class PandapDbContext:DbContext
 
     public DbSet<FormSoru> FormSorus { get; set; }
 
-    public DbSet<STOKTANIM>  StokTanims { get; set; }
+    public DbSet<vwStokTanim>  StokTanims { get; set; }
 
     public PandapDbContext(DbContextOptions<PandapDbContext> options) : base(options) { }
 

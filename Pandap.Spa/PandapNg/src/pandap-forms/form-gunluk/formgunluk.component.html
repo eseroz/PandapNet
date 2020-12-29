@@ -38,7 +38,7 @@
         role="progressbar"
         [style.width]="DoldurulmaYuzde + '%'"
       >
-        {{ DoldurulmaYuzde }}%
+        {{ DoldurulmaYuzde?.toFixed(2) }}%
       </div>
     </div>
   </nav>

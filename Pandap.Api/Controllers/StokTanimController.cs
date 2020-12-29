@@ -19,17 +19,17 @@ namespace Pandap.Api.Controllers
 
         }
 
-        public async Task<ActionResult<STOKTANIM>> StokTanimBarkodOkutulanListeGetir()
+        public async Task<ActionResult<vwStokTanim>> StokTanimBarkodOkutulanListeGetir()
         {
             var liste = await this._dc.StokTanims
-                .Where(c => c.GuncellemeTarihi!=null)
-                .OrderByDescending(c=>c.GuncellemeTarihi)
+                .Where(c => c.SayimGuncellemeTarihi!=null)
+                .OrderByDescending(c=>c.SayimGuncellemeTarihi)
                 .ToListAsync();
 
             return Ok(liste);
         }
 
-        public async Task<ActionResult<STOKTANIM>> StokTanimListeGetir()
+        public async Task<ActionResult<vwStokTanim>> StokTanimListeGetir()
         {
             var liste = await this._dc.StokTanims
                 .ToListAsync();
@@ -37,7 +37,7 @@ namespace Pandap.Api.Controllers
             return Ok(liste);
         }
 
-        public async Task<ActionResult<STOKTANIM>> StokTanimBul(string stokKod)
+        public async Task<ActionResult<vwStokTanim>> StokTanimBul(string stokKod)
         {
             var stok = await this._dc.StokTanims
                 .Where(c => c.STOK_KODU == stokKod)
@@ -47,20 +47,33 @@ namespace Pandap.Api.Controllers
         }
 
         [HttpPost]
-        public  ActionResult<string> StokTanimGuncelle( [FromBody] STOKTANIM stokTanim)
+        public  ActionResult<string> StokTanimGuncelle( [FromBody] vwStokTanim stokTanim)
         {
             var stok = this._dc.StokTanims
                 .Where(c => c.STOK_KODU == stokTanim.STOK_KODU)
                 .FirstOrDefault();
 
-            stok.Miktar = stokTanim.Miktar;
+            stok.SayimMiktar = stokTanim.SayimMiktar;
             stok.DosyaListesiJson = stokTanim.DosyaListesiJson;
-            stok.GuncellemeTarihi = DateTime.Now;
+            stok.SayimGuncellemeTarihi = DateTime.Now;
             _dc.SaveChanges();
 
             return Ok("Guncellendi");
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<int>> GuncellemeDurumuSayilariGetir()
+        {
+            int kayitSayisi =await this._dc.StokTanims.CountAsync(); 
+            var guncellenenKayitSayisi =await this._dc.StokTanims.Where(p => p.SayimGuncellemeTarihi != null).CountAsync();
+            
+            var sonuc= new int[] { guncellenenKayitSayisi, kayitSayisi };
+
+            return sonuc;
+        } 
+
 
     }
 }
+
+

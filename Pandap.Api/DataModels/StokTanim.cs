@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Pandap.Api.DataModels
 {
 
-    [Table("STOKTANIM")]
-    public class STOKTANIM
+    [Table("vwStokTanim",Schema ="SatinAlma")]
+    public class vwStokTanim
     {
 
         [Key]
@@ -24,10 +24,11 @@ namespace Pandap.Api.DataModels
         public string KOD5_AD { get; set; }
         public string GRUP_KODU { get; set; }
 
-        public decimal? Miktar { get; set; }
+        public decimal BAKIYE { get; set; }
 
+        public decimal? SayimMiktar { get; set; }
+        public DateTime? SayimGuncellemeTarihi { get; set; }
         public string DosyaListesiJson { get; set; }
-        public DateTime? GuncellemeTarihi { get; set; }
 
     }
 }
