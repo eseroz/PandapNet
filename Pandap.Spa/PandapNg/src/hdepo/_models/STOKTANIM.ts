@@ -13,4 +13,6 @@ export class STOKTANIM {
   GuncellemeTarihi: string;
   DosyaListesiJson:string;
   DosyaListesi:string[];
+
+  ResimSayisi:number;
 }

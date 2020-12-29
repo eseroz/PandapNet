@@ -6,7 +6,6 @@ import { DateFromUTCPipe } from 'src/pandap-forms/_utils/DateFromUTCPipe';
 import { HdepoService } from '../hdepo.service';
 import { STOKTANIM } from '../_models/STOKTANIM';
 
-
 @Component({
   selector: 'app-depo-sayim',
   templateUrl: './depo-sayim.component.html',
@@ -26,30 +25,26 @@ export class DepoSayimComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.StokListe = await this.dataService.depoSayimListeGetir();
+    await this.EkranYenile();
   }
 
   async barkodAra(searchValue: string) {
     if (searchValue.length > 3) {
       let stok = await this.dataService.StokTanimBul(searchValue);
-     
 
       if (stok !== null) {
         this.Stok = stok;
 
-        if(this.Stok.DosyaListesiJson!==null)
-            this.Stok.DosyaListesi= JSON.parse(this.Stok.DosyaListesiJson);
-        else
-          this.Stok.DosyaListesi=[];
-        
-        await this.openModal();
+        if (this.Stok.DosyaListesiJson !== null)
+          this.Stok.DosyaListesi = JSON.parse(this.Stok.DosyaListesiJson);
+        else this.Stok.DosyaListesi = [];
+
+        this.openModal();
       }
     }
   }
 
   openModal() {
-
-
     let content = this.myDivElementRef;
 
     this.modalService
@@ -58,17 +53,23 @@ export class DepoSayimComponent implements OnInit {
         (result) => {
           this.closeResult = `Kapatıldı: ${result}`;
 
+          console.log('yeni seçili stok', this.Stok);
+
           let sonuc = this.dataService.StokTanimGuncelle(this.Stok);
 
-          let listedeVarMi=this.StokListe.filter(c=>c.STOK_KODU==this.Stok.STOK_KODU);
+          let seciliStok = this.StokListe.find(
+            (c) => c.STOK_KODU == this.Stok.STOK_KODU
+          );
 
-          if(listedeVarMi.length==0)
-          {
+          if (seciliStok === undefined) {
+            this.Stok.GuncellemeTarihi = new Date().toUTCString();
+
+            console.log(this.Stok);
+
             this.StokListe.push(this.Stok);
-          } 
-          else
-          {
-            listedeVarMi[0].Miktar=this.Stok.Miktar;
+          } else {
+            seciliStok.Miktar = this.Stok.Miktar;
+            seciliStok.DosyaListesi = this.Stok.DosyaListesi;
           }
 
           this.txtSearchRef.nativeElement.value = '';
@@ -85,7 +86,10 @@ export class DepoSayimComponent implements OnInit {
   async EkranYenile() {
     this.StokListe = await this.dataService.depoSayimListeGetir();
 
-    alert('Ekran Güncellendi');
+    this.StokListe.forEach((x) => {
+      x.DosyaListesi = JSON.parse(x.DosyaListesiJson);
+      x.ResimSayisi = x.DosyaListesi.length;
+    });
   }
 
   private getDismissReason(reason: any): string {
