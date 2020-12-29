@@ -6,7 +6,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DepoSayimComponent } from './depo-sayim/depo-sayim.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     CommonModule,
     HDepoRoutingModule,
     FormsModule,
-    HttpClientModule,
-    ZXingScannerModule
+    HttpClientModule
+
 
 
   ]

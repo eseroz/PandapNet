@@ -1,6 +1,5 @@
-import {  Component, OnInit } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { HdepoService } from '../hdepo.service';
-import { BarcodeFormat } from '@zxing/library';
 
 
 @Component({
@@ -11,6 +10,10 @@ import { BarcodeFormat } from '@zxing/library';
 export class DepoSayimComponent implements OnInit {
   StokListe = [];
   errorMessage = '';
+
+  @ViewChild('modalForm') modalForm; 
+
+  isModalOpen=false;
 
   constructor(public dataService: HdepoService) {}
 
@@ -25,11 +28,29 @@ export class DepoSayimComponent implements OnInit {
     this.qrResultString = resultString;
   }
 
-  async ngOnInit() {
-    this.StokListe = await this.dataService.depoSayimListeGetir();
+  ngOnInit() {
+    //this.StokListe = await this.dataService.depoSayimListeGetir();
   }
 
-  ngAfterViewInit(): void {}
+  barkodAra(searchValue: string)
+  {
+    if(searchValue.length>3)
+    {
+      console.log(searchValue);
+      this.isModalOpen=true;
+
+      console.log(this.modalForm.nativeElement);
+      
+   
+    }
+
+    
+   
+  }
+
+  ngAfterViewInit() {
+ 
+  }
 
  
 }
