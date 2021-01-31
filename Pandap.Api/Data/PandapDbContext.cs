@@ -15,6 +15,8 @@ public class PandapDbContext:DbContext
 
     public DbSet<vwStokTanim>  StokTanims { get; set; }
 
+    public DbSet<BakimMakineParca> BakimMakineParca { get; set; }
+
     public PandapDbContext(DbContextOptions<PandapDbContext> options) : base(options) { }
 
 }

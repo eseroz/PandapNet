@@ -107,8 +107,7 @@ namespace Pandap.Api
 
             app.UseCors("MyAllowOrigin");
 
-         
-           
+
 
             app.UseEndpoints(endpoints =>
             {

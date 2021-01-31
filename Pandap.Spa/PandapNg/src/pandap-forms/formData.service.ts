@@ -89,4 +89,28 @@ export class FormDataService {
 
     return data;
   }
+  
+
+  
+  async makineAdlariniGetir() {
+    var userToken = JSON.parse(localStorage.getItem('currentUser')).Token;
+
+    let options = {
+      headers: {
+        Authorization: 'Bearer ' + userToken,
+      },
+    };
+
+    let data = await this.http
+      .get<String>(
+        `${environment.apiUrl}/BakimMakineParca/Makineler`,
+        { ...options }
+      )
+      .toPromise();
+
+    return data;
+  }
+
+  
+
 }

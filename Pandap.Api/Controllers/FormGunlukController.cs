@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Pandap.Api.DataModels;
 
 namespace Pandap.Api.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
 
@@ -21,13 +23,12 @@ namespace Pandap.Api.Controllers
             this.dc = dc;
         }
 
-
+        [HttpGet]
+        [AllowAnonymous]
         public List<FormGunluk> BugunBakilacaklar()
         {
             var liste = dc.FormGunluks.ToList();
-
             return liste;
-
         }
 
         public List<FormGunluk> FormGunlukGetirTarihten(DateTime tarih)

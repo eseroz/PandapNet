@@ -32,6 +32,7 @@ namespace pandap.api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Kullanici> Get()
         {
 

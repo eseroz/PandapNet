@@ -6,6 +6,7 @@ import { FormSorularComponent } from 'src/pandap-forms/form-tanimlari/form-edit.
 import { FormYatayDataEditComponent } from 'src/pandap-forms/form-yatay-data-edit/form-yatay-data-edit.component';
 import { FormgunlukComponent } from 'src/pandap-forms/form-gunluk/formgunluk.component';
 import { LayoutComponent } from './layout.component';
+import { YilikBakimPlanlaComponent } from './yilik-bakim-planla/yilik-bakim-planla.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,7 @@ const routes: Routes = [
         path: 'formYatayData/:formAd?/:formGunlukId?',
         component: FormYatayDataEditComponent,
       },
-
-      
+      { path: 'yillik-bakim-planla', component: YilikBakimPlanlaComponent }
     ],
   },
 ];

@@ -10,6 +10,7 @@ import { FormTanim } from '../_models/formTanim';
   templateUrl: './form-edit.component.html',
 })
 export class FormSorularComponent implements OnInit {
+  
   public FormSorular: FormSoru[];
   public FormTanim: FormTanim[];
   FormId = 0;

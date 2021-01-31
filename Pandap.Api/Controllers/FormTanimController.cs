@@ -10,7 +10,7 @@ using Pandap.Api.DataModels;
 
 namespace Pandap.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class FormTanimController : ControllerBase
@@ -22,21 +22,18 @@ namespace Pandap.Api.Controllers
             this.dc = dc;
         }
 
-
         [HttpGet]
         public IEnumerable<FormTanim> FormlariGetir()
         {
             var result = dc.FormTanims.ToList();
             return result;
-
         }
 
         [HttpGet]
-        public FormTanim FormGetirById(int id)
+        public FormTanim FormGetirById()
         {
-            var result = dc.FormTanims.Where(c => c.Id == id).FirstOrDefault();
+            var result = dc.FormTanims.Where(c => c.Id == 118).FirstOrDefault();
             return result;
-
         }
 
         [HttpGet]
