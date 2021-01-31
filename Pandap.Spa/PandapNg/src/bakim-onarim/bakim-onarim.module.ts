@@ -7,10 +7,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PandapControlsModule } from 'src/pandap-controls/PandapControlsModule';
+import { BakimPlanlariComponent } from './bakim-planlari/bakim-planlari.component';
 
 
 @NgModule({
-  declarations: [PeriyodikBakimDashboardComponent, PeriyodikBakimComponent],
+  declarations: [PeriyodikBakimDashboardComponent, PeriyodikBakimComponent, BakimPlanlariComponent],
   imports: [
     CommonModule,
     PeriyodikBakimRoutingModule,
