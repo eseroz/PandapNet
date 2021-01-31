@@ -9,7 +9,7 @@
                         <label for="select-machine">Hangi Makineye Bakım Yapılacak? </label>
                         <select id="select-machine" class="form-control form-control-lg">
                             <option value="0">- Lütfen Makine Seçiniz -</option>
-                            <option *ngFor="let Makine of MakineListesi">Folyo Hadde 1</option>
+                            <option *ngFor="let makine of MakineListesi">{{ makine.MakineAdi }}</option>
                         </select>
                     </div>                    
                 </div>

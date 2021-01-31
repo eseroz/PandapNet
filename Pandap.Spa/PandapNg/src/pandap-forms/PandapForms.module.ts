@@ -11,6 +11,7 @@ import { PandapFormRoutingModule } from './pandapforms.routing';
 import { LayoutComponent } from './layout.component';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     FormTanimsComponent,

@@ -14,6 +14,10 @@ const hdepoFormModule = () =>
     (x) => x.HDepoModule
   );
 
+  const BakimOnarimModule = () =>
+  import('src/bakim-onarim/bakim-onarim.module').then(
+    (x) => x.BakimOnarimModule
+  );
 
 const routes: Routes = [
   {
@@ -25,6 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'pandapforms', loadChildren: pandapFormModule },
   { path: 'hdepo', loadChildren: hdepoFormModule },
+  { path: 'bakim-onarim', loadChildren: BakimOnarimModule },
 ];
 
 @NgModule({
